@@ -62,13 +62,23 @@
         /* Before / After Interactive Slider */
         .ba-wrap {
             position: relative;
+            width: 100%;
+            height: 260px;
             overflow: hidden;
             user-select: none;
             touch-action: pan-y;
         }
+        .ba-after-svg,
+        .ba-before-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
         .ba-before {
             position: absolute;
-            inset: 0 auto 0 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
             width: 50%;
             overflow: hidden;
             border-right: 3px solid #FACC15;
@@ -152,7 +162,7 @@
         <!-- ========================================================= -->
         <!-- VIEW 1: HOME, PRICING, SERVICES & QUOTE BUILDER           -->
         <!-- ========================================================= -->
-        <main id="view-home">
+        <main id="view-home" style="display: block;">
 
             <!-- Hero Window (Leaves Center Open so Full Logo Shows Through) -->
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 flex flex-col justify-between">
@@ -511,7 +521,7 @@
         <!-- ========================================================= -->
         <!-- VIEW 2: BEFORE & AFTERS GALLERY PAGE                      -->
         <!-- ========================================================= -->
-        <section id="view-gallery" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+        <section id="view-gallery" style="display: none;" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
             <div class="glass rounded-3xl p-8 sm:p-10 border-2 border-gold-500/70 text-center mb-10 shadow-2xl">
                 <span class="text-xs font-black uppercase tracking-wider text-gold-400">★ See The Difference Immediately</span>
                 <h1 class="text-3xl sm:text-5xl font-black uppercase mt-2">Before &amp; Afters <span class="text-royal-400">Gallery</span></h1>
@@ -524,15 +534,15 @@
                 <!-- Card 1: Driveway -->
                 <div class="glass rounded-3xl overflow-hidden border border-white/15 shadow-xl flex flex-col justify-between">
                     <div>
-                        <div class="ba-wrap h-64 bg-slate-900">
-                            <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                        <div class="ba-wrap bg-slate-900">
+                            <svg viewBox="0 0 600 340" preserveAspectRatio="none" class="ba-after-svg">
                                 <rect width="600" height="120" fill="#BAE6FD"/><rect y="95" width="600" height="25" fill="#4ADE80"/>
                                 <polygon points="100,115 500,115 585,340 15,340" fill="#F1F5F9"/>
                                 <line x1="300" y1="115" x2="300" y2="340" stroke="#94A3B8" stroke-width="3"/>
                             </svg>
                             <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-royal-600 text-xs font-black uppercase">After</span>
                             <div class="ba-before">
-                                <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                                <svg viewBox="0 0 600 340" preserveAspectRatio="none" class="ba-before-svg">
                                     <rect width="600" height="120" fill="#94A3B8"/><rect y="95" width="600" height="25" fill="#15803D"/>
                                     <polygon points="100,115 500,115 585,340 15,340" fill="#44403C"/>
                                     <ellipse cx="260" cy="225" rx="110" ry="60" fill="#1C1917" opacity="0.7"/>
@@ -556,8 +566,8 @@
                 <!-- Card 2: House Wash -->
                 <div class="glass rounded-3xl overflow-hidden border border-white/15 shadow-xl flex flex-col justify-between">
                     <div>
-                        <div class="ba-wrap h-64 bg-slate-900">
-                            <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                        <div class="ba-wrap bg-slate-900">
+                            <svg viewBox="0 0 600 340" preserveAspectRatio="none" class="ba-after-svg">
                                 <rect width="600" height="340" fill="#E0F2FE"/>
                                 <rect x="50" y="30" width="500" height="270" fill="#F8FAFC"/>
                                 <rect x="145" y="90" width="90" height="120" fill="#38BDF8" stroke="#1E3A8A" stroke-width="6"/>
@@ -565,7 +575,7 @@
                             </svg>
                             <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-royal-600 text-xs font-black uppercase">After</span>
                             <div class="ba-before">
-                                <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                                <svg viewBox="0 0 600 340" preserveAspectRatio="none" class="ba-before-svg">
                                     <rect width="600" height="340" fill="#94A3B8"/>
                                     <rect x="50" y="30" width="500" height="270" fill="#65A30D"/>
                                     <rect x="145" y="90" width="90" height="120" fill="#475569" stroke="#1E293B" stroke-width="6"/>
@@ -577,4 +587,127 @@
                             <input type="range" min="5" max="95" value="50" oninput="slideBA(this)" class="ba-slider">
                         </div>
                         <div class="p-6">
-                            <span class="text-xs font-extrabold uppercase text-royal-
+                            <span class="text-xs font-extrabold uppercase text-royal-400">House Washing • Deptford, NJ</span>
+                            <h3 class="text-xl font-black mt-1">Vinyl Siding Green Algae Soft Wash</h3>
+                            <p class="text-sm text-slate-300 mt-2">Low-pressure eco-friendly soft wash melted away thick green algae without high pressure.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="pickService('House Washing')" class="w-full py-3 rounded-xl bg-royal-600 hover:bg-royal-500 font-bold text-sm">Get Free House Wash Estimate &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-navy-950/95 border-t-4 border-crimson-600 text-slate-300 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-black text-lg uppercase">McMullin's Pressure Washing LLC</h4>
+                    <p class="text-xs text-gold-400 font-extrabold uppercase mt-1">✓ Fully Insured • Residential &amp; Commercial</p>
+                    <p class="text-sm mt-3">Professional Results. Honest Service. Every Time.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-black text-sm uppercase mb-3">South Jersey Coverage</h4>
+                    <p class="text-sm">★ Gloucester County &bull; ★ Camden County<br>★ Salem County &bull; ★ Cumberland County</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-black text-sm uppercase mb-3">Contact Us</h4>
+                    <a href="tel:8562838381" class="block text-lg font-black text-gold-400">(856) 283-8381</a>
+                    <a href="mailto:McMullinsPressureWashing@gmail.com" class="block text-sm text-slate-200 mt-1 break-all">McMullinsPressureWashing@gmail.com</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tab) {
+            const home = document.getElementById('view-home');
+            const gal = document.getElementById('view-gallery');
+            const bHome = document.getElementById('tab-home');
+            const bGal = document.getElementById('tab-gallery');
+            const mHome = document.getElementById('m-tab-home');
+            const mGal = document.getElementById('m-tab-gallery');
+
+            if (tab === 'gallery') {
+                home.style.display = 'none';
+                gal.style.display = 'block';
+                bGal.classList.add('bg-royal-600', 'text-white');
+                bHome.classList.remove('bg-royal-600');
+                mGal.classList.add('bg-royal-600', 'text-white');
+                mHome.classList.remove('bg-royal-600');
+            } else {
+                gal.style.display = 'none';
+                home.style.display = 'block';
+                bHome.classList.add('bg-royal-600', 'text-white');
+                bGal.classList.remove('bg-royal-600');
+                mHome.classList.add('bg-royal-600', 'text-white');
+                mGal.classList.remove('bg-royal-600');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function jumpToEstimate() {
+            showTab('home');
+            setTimeout(() => document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' }), 50);
+        }
+
+        function pickService(val) {
+            showTab('home');
+            document.querySelectorAll('input[name="svc"]').forEach(c => { if (c.value === val) c.checked = true; });
+            setTimeout(() => document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' }), 50);
+        }
+
+        function pickDriveway(pkg) {
+            pickService('Driveways & Concrete');
+            document.getElementById('qPkg').value = pkg;
+        }
+
+        function claimComboSpecial() {
+            showTab('home');
+            document.querySelectorAll('input[name="svc"]').forEach(c => {
+                if (c.value === 'House Washing' || c.value === 'Driveways & Concrete') c.checked = true;
+            });
+            document.getElementById('qPkg').value = 'House Wash + Driveway Combo (FREE Sidewalk Wash!)';
+            setTimeout(() => document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' }), 50);
+        }
+
+        function claimHouseDiscount() {
+            pickService('House Washing');
+            document.getElementById('qNotes').value = 'Claiming 10% OFF House Washing over $200 website offer';
+        }
+
+        function slideBA(inp) {
+            const box = inp.closest('.ba-wrap');
+            box.querySelector('.ba-before').style.width = inp.value + '%';
+            box.querySelector('.ba-knob').style.left = inp.value + '%';
+        }
+
+        function formatQuote() {
+            const svcs = Array.from(document.querySelectorAll('input[name="svc"]:checked')).map(c => c.value);
+            const list = svcs.length ? svcs.join(', ') : 'General Free Estimate';
+            const prop = document.getElementById('qProp').value;
+            const pkg = document.getElementById('qPkg').value;
+            const name = document.getElementById('qName').value.trim() || 'Customer';
+            const town = document.getElementById('qTown').value.trim() || 'South Jersey';
+            const notes = document.getElementById('qNotes').value.trim();
+
+            let msg = `Hi McMullin's Pressure Washing! I'd like a free estimate:\n• Services: ${list}\n• Property: ${prop}\n`;
+            if (pkg !== 'Custom Quote') msg += `• Package: ${pkg}\n`;
+            msg += `• Name: ${name}\n• Town: ${town}\n`;
+            if (notes) msg += `• Notes: ${notes}`;
+            return { list, msg };
+        }
+
+        function sendSMS() {
+            const { msg } = formatQuote();
+            window.location.href = `sms:8562838381?&body=${encodeURIComponent(msg)}`;
+        }
+
+        function sendEmail() {
+            const { list, msg } = formatQuote();
+            window.location.href = `mailto:McMullinsPressureWashing@gmail.com?subject=${encodeURIComponent('Free Estimate - ' + list)}&body=${encodeURIComponent(msg)}`;
+        }
+    </script>
+</body>
+</html>
