@@ -55,13 +55,13 @@
             padding: 0;
         }
 
-        /* Fixed Full-Screen Backdrop locked behind scrolling content (Requires image_14.png in same folder) */
+        /* Fixed Full-Screen Backdrop locked behind scrolling content (Embedded Base64 Logo) */
         #brand-backdrop-fixed {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            background-image: url('image_14.png');
+            background-image: url('[file-tag: code-generated-file-907247ee-ed52-4b10-942b-86d7d6835035]');
             background-size: contain;
             background-position: center center;
             background-repeat: no-repeat;
@@ -145,7 +145,7 @@
 </head>
 <body class="text-white font-sans antialiased selection:bg-royal-600 selection:text-white">
 
-    <!-- FIXED FULL-SCREEN LOGO & BEARDED MASCOT BACKDROP (Place image_14.png in same directory as index.html) -->
+    <!-- FIXED FULL-SCREEN LOGO & BEARDED MASCOT BACKDROP -->
     <div id="brand-backdrop-fixed" aria-hidden="true"></div>
 
     <!-- Sticky Top Header -->
@@ -170,20 +170,7 @@
                 <!-- Brand Title + Mini Emblem -->
                 <a href="#home" onclick="switchView('home')" class="flex items-center gap-3 group min-w-0">
                     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden border-2 border-gold-400/80 shadow-md shrink-0 bg-slatebrand-900 flex items-center justify-center">
-                        <img src="image_14.png" alt="McMullin's Pressure Washing LLC Logo" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <svg viewBox="0 0 100 100" class="w-full h-full hidden">
-                            <rect width="100" height="100" fill="#0F172A"/>
-                            <circle cx="50" cy="50" r="42" fill="#1E293B" stroke="#CBD5E1" stroke-width="5"/>
-                            <rect x="16" y="18" width="36" height="32" fill="#1E3A8A"/>
-                            <rect x="52" y="18" width="32" height="10" fill="#DC2626"/>
-                            <rect x="52" y="28" width="32" height="10" fill="#FFFFFF"/>
-                            <rect x="52" y="38" width="32" height="10" fill="#DC2626"/>
-                            <polygon points="42,56 62,40 82,56" fill="#080D1A"/>
-                            <rect x="47" y="55" width="30" height="24" fill="#080D1A"/>
-                            <rect x="58" y="60" width="8" height="8" fill="#FACC15"/>
-                            <path d="M12 72 Q50 58 88 72 L88 92 L12 92 Z" fill="#2563EB"/>
-                            <line x1="20" y1="62" x2="72" y2="38" stroke="#FACC15" stroke-width="4" stroke-linecap="round"/>
-                        </svg>
+                        <img src="[file-tag: code-generated-file-907247ee-ed52-4b10-942b-86d7d6835035]" alt="McMullin's Pressure Washing LLC Logo" class="w-full h-full object-cover">
                     </div>
                     <div class="leading-tight truncate">
                         <div class="flex items-center gap-2">
@@ -236,7 +223,7 @@
         </div>
     </header>
 
-    <!-- SCROLLABLE FOREGROUND CONTENT LAYER (Scrolls smoothly over the fixed Logo & Mascot) -->
+    <!-- SCROLLABLE FOREGROUND CONTENT LAYER -->
     <div id="scroll-content">
 
         <!-- ===================================================================== -->
