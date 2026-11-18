@@ -4,126 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McMullin's Pressure Washing LLC | South Jersey Exterior Cleaning</title>
-    <meta name="description" content="Professional Results. Honest Service. Every Time. McMullin's Pressure Washing LLC serves Gloucester, Camden, Salem, and Cumberland Counties in South Jersey. Fully Insured. Free Estimates! Call or Text (856) 283-8381.">
+    <meta name="description" content="Professional Results. Honest Service. Every Time. Serving Gloucester, Camden, Salem & Cumberland Counties in South Jersey. Fully Insured. Free Estimates! Call or Text (856) 283-8381.">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        slatebrand: {
-                            800: '#1E293B',
-                            900: '#0F172A',
-                            950: '#080D1A',
-                        },
-                        crimson: {
-                            500: '#EF4444',
-                            600: '#DC2626',
-                            700: '#B91C1C',
-                        },
-                        royal: {
-                            400: '#60A5FA',
-                            500: '#3B82F6',
-                            600: '#2563EB',
-                            700: '#1D4ED8',
-                        },
-                        gold: {
-                            400: '#FACC15',
-                            500: '#EAB308',
-                            600: '#CA8A04',
-                        }
+                        navy: { 900: '#0F172A', 950: '#070B14' },
+                        crimson: { 600: '#DC2626', 700: '#B91C1C' },
+                        royal: { 400: '#60A5FA', 500: '#3B82F6', 600: '#2563EB', 700: '#1D4ED8' },
+                        gold: { 400: '#FACC15', 500: '#EAB308' }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Keep html & body transparent so the fixed z-index: 0 backdrop is never covered */
         html, body {
-            background: transparent !important;
+            background-color: #05080f;
             margin: 0;
             padding: 0;
         }
 
-        /* Fixed Full-Screen Backdrop locked behind scrolling content (Embedded Base64 Logo) */
-        #brand-backdrop-fixed {
+        /* Fixed Full-Screen Mascot & Logo Backdrop */
+        #fixed-logo-bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            background-image: url('[file-tag: code-generated-file-907247ee-ed52-4b10-942b-86d7d6835035]');
+            background-color: #05080f;
+            background-image: url('./logo.png');
             background-size: contain;
             background-position: center center;
             background-repeat: no-repeat;
-            background-color: #05080f;
         }
 
-        /* Scrollable foreground wrapper sits cleanly above the fixed backdrop */
-        #scroll-content {
+        #page-content {
             position: relative;
             z-index: 10;
         }
 
-        /* Semi-transparent dark glassmorphism panels so fixed logo & mascot stay visible while scrolling */
-        .glass-panel {
-            background-color: rgba(10, 15, 28, 0.80);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-        .glass-card {
-            background-color: rgba(10, 15, 28, 0.80);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-        .glass-hero-card {
-            background-color: rgba(10, 15, 28, 0.80);
+        .glass {
+            background-color: rgba(9, 14, 26, 0.82);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
 
-        /* FAQ Accordion Animation */
-        .faq-content {
-            transition: max-height 0.3s ease-out, opacity 0.25s ease-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-        .faq-item.active .faq-content {
-            max-height: 320px;
-            opacity: 1;
-        }
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        /* Interactive Before/After Slider Styling */
-        .ba-container {
+        /* Before / After Interactive Slider */
+        .ba-wrap {
             position: relative;
             overflow: hidden;
             user-select: none;
             touch-action: pan-y;
         }
-        .ba-before-layer {
+        .ba-before {
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            inset: 0 auto 0 0;
             width: 50%;
             overflow: hidden;
             border-right: 3px solid #FACC15;
             z-index: 10;
         }
-        .ba-handle {
+        .ba-knob {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -131,7 +82,7 @@
             z-index: 20;
             pointer-events: none;
         }
-        .ba-range {
+        .ba-slider {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -143,1563 +94,487 @@
         }
     </style>
 </head>
-<body class="text-white font-sans antialiased selection:bg-royal-600 selection:text-white">
+<body class="text-white font-sans antialiased">
 
-    <!-- FIXED FULL-SCREEN LOGO & BEARDED MASCOT BACKDROP -->
-    <div id="brand-backdrop-fixed" aria-hidden="true"></div>
+    <!-- Fixed Background Layer -->
+    <div id="fixed-logo-bg" aria-hidden="true"></div>
 
-    <!-- Sticky Top Header -->
-    <header class="sticky top-0 z-50 bg-slatebrand-950/85 backdrop-blur-md border-b border-white/15 shadow-xl">
-        <!-- Top Announcement Strip -->
-        <div class="bg-gradient-to-r from-crimson-700/95 via-crimson-600/95 to-crimson-700/95 text-white text-[11px] sm:text-xs font-extrabold py-1.5 px-4 text-center tracking-wide border-b border-white/10">
-            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-                <span class="inline-flex items-center gap-1 text-gold-400">
-                    <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                    FULLY INSURED
-                </span>
-                <span class="text-white/40">•</span>
-                <span>FREE ESTIMATES</span>
-                <span class="hidden md:inline text-white/40">•</span>
-                <span class="hidden md:inline">Serving Gloucester, Camden, Salem &amp; Cumberland Counties</span>
-            </div>
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 bg-navy-950/90 backdrop-blur-md border-b border-white/15 shadow-xl">
+        <div class="bg-gradient-to-r from-crimson-700 via-crimson-600 to-crimson-700 text-white text-[11px] sm:text-xs font-extrabold py-1.5 px-4 text-center tracking-wide">
+            <span class="text-gold-400">★ FULLY INSURED</span> • FREE ESTIMATES • Serving Gloucester, Camden, Salem &amp; Cumberland Counties
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 sm:h-20 gap-3">
-                
-                <!-- Brand Title + Mini Emblem -->
-                <a href="#home" onclick="switchView('home')" class="flex items-center gap-3 group min-w-0">
-                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden border-2 border-gold-400/80 shadow-md shrink-0 bg-slatebrand-900 flex items-center justify-center">
-                        <img src="[file-tag: code-generated-file-907247ee-ed52-4b10-942b-86d7d6835035]" alt="McMullin's Pressure Washing LLC Logo" class="w-full h-full object-cover">
-                    </div>
-                    <div class="leading-tight truncate">
-                        <div class="flex items-center gap-2">
-                            <span class="text-base sm:text-xl font-black tracking-tight text-white uppercase truncate">McMullin's</span>
-                            <span class="hidden xl:inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gold-500/20 border border-gold-500/40 text-gold-400 text-[10px] font-black uppercase tracking-wider">
-                                Fully Insured
-                            </span>
-                        </div>
-                        <span class="block text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-royal-400">Pressure Washing LLC</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Page Switcher & Navigation Links -->
-                <nav class="hidden md:flex items-center gap-2 lg:gap-4 text-sm font-bold">
-                    <button type="button" id="nav-home-btn" onclick="switchView('home')" class="px-3.5 py-2 rounded-xl bg-royal-600 text-white font-extrabold transition-colors">
-                        Home &amp; Pricing
-                    </button>
-                    <button type="button" id="nav-gallery-btn" onclick="switchView('gallery')" class="px-3.5 py-2 rounded-xl text-slate-200 hover:text-white hover:bg-white/10 font-extrabold transition-colors flex items-center gap-1.5">
-                        <span>Before &amp; Afters</span>
-                        <span class="px-1.5 py-0.5 text-[10px] rounded bg-gold-500 text-slatebrand-950 font-black uppercase">Gallery</span>
-                    </button>
-                    <a href="#services" onclick="switchView('home')" class="hidden lg:inline-block px-3 py-2 text-slate-200 hover:text-gold-400 transition-colors">
-                        Services
-                    </a>
-                    <a href="#estimate" onclick="goToQuote()" class="hidden lg:inline-block px-3 py-2 text-slate-200 hover:text-white transition-colors">
-                        Free Estimate
-                    </a>
-                </nav>
-
-                <!-- Prominent Call / Text CTA Button -->
-                <div class="flex items-center gap-2 shrink-0">
-                    <a href="tel:8562838381" class="inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-crimson-600 to-crimson-700 hover:from-crimson-500 hover:to-crimson-600 text-white font-black text-xs sm:text-sm shadow-lg shadow-crimson-600/30 border border-white/20 transition-all transform hover:-translate-y-0.5">
-                        <svg class="w-4 h-4 text-gold-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-                        <span>(856) 283-8381</span>
-                    </a>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3">
+            <!-- Brand Emblem & Title -->
+            <a href="#home" onclick="showTab('home')" class="flex items-center gap-3 min-w-0">
+                <img src="./logo.png" alt="McMullin's Pressure Washing LLC" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border-2 border-gold-400 bg-navy-900 shrink-0">
+                <div class="leading-tight truncate">
+                    <span class="block text-base sm:text-xl font-black uppercase tracking-tight truncate">McMullin's</span>
+                    <span class="block text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-royal-400">Pressure Washing LLC</span>
                 </div>
+            </a>
 
-            </div>
-
-            <!-- Mobile Sub-Bar Page Switcher -->
-            <div class="flex md:hidden items-center justify-center gap-2 pb-2.5 pt-1 border-t border-white/10">
-                <button type="button" id="mobile-nav-home" onclick="switchView('home')" class="flex-1 py-1.5 px-3 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wide text-center">
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex items-center gap-3 text-sm font-bold">
+                <button type="button" id="tab-home" onclick="showTab('home')" class="px-4 py-2 rounded-xl bg-royal-600 text-white font-extrabold">
                     Home &amp; Pricing
                 </button>
-                <button type="button" id="mobile-nav-gallery" onclick="switchView('gallery')" class="flex-1 py-1.5 px-3 rounded-lg bg-white/10 text-slate-200 text-xs font-black uppercase tracking-wide text-center flex items-center justify-center gap-1.5">
+                <button type="button" id="tab-gallery" onclick="showTab('gallery')" class="px-4 py-2 rounded-xl text-slate-200 hover:bg-white/10 font-extrabold flex items-center gap-2">
                     <span>Before &amp; Afters</span>
-                    <span class="px-1.5 py-0.2 rounded bg-gold-500 text-slatebrand-950 text-[10px]">Gallery</span>
+                    <span class="px-1.5 py-0.5 text-[10px] rounded bg-gold-500 text-navy-950 font-black uppercase">Gallery</span>
                 </button>
-            </div>
+                <a href="#services" onclick="showTab('home')" class="px-3 py-2 text-slate-200 hover:text-gold-400">Services</a>
+                <a href="#estimate" onclick="jumpToEstimate()" class="px-3 py-2 text-slate-200 hover:text-white">Free Estimate</a>
+            </nav>
+
+            <!-- Call / Text Button -->
+            <a href="tel:8562838381" class="inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-crimson-600 hover:bg-crimson-500 text-white font-black text-xs sm:text-sm shadow-lg border border-white/20 shrink-0">
+                <span class="text-gold-400">☎</span>
+                <span>(856) 283-8381</span>
+            </a>
+        </div>
+
+        <!-- Mobile Tab Switcher -->
+        <div class="flex md:hidden gap-2 px-4 pb-2.5 pt-1 border-t border-white/10">
+            <button type="button" id="m-tab-home" onclick="showTab('home')" class="flex-1 py-1.5 rounded-lg bg-royal-600 text-white text-xs font-black uppercase">
+                Home &amp; Pricing
+            </button>
+            <button type="button" id="m-tab-gallery" onclick="showTab('gallery')" class="flex-1 py-1.5 rounded-lg bg-white/10 text-slate-200 text-xs font-black uppercase">
+                Before &amp; Afters
+            </button>
         </div>
     </header>
 
-    <!-- SCROLLABLE FOREGROUND CONTENT LAYER -->
-    <div id="scroll-content">
+    <!-- Main Scrollable Content -->
+    <div id="page-content">
 
-        <!-- ===================================================================== -->
-        <!-- VIEW 1: MAIN HOME PAGE                                                -->
-        <!-- ===================================================================== -->
-        <main id="home-view">
+        <!-- ========================================================= -->
+        <!-- VIEW 1: HOME, PRICING, SERVICES & QUOTE BUILDER           -->
+        <!-- ========================================================= -->
+        <main id="view-home">
 
-            <!-- 1. Opening Hero Viewport with Unobstructed Center Showcase Window -->
+            <!-- Hero Window (Leaves Center Open so Full Logo Shows Through) -->
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12 flex flex-col justify-between">
-                
-                <!-- Top Floating Trust Pill -->
-                <div class="flex flex-wrap items-center justify-between gap-3">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-hero-card border border-white/20 text-xs sm:text-sm font-extrabold text-gold-400 shadow-lg">
-                        <span>★ Professional Results. Honest Service. Every Time.</span>
-                    </div>
-                    <div class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full glass-hero-card border border-white/20 text-xs font-bold text-slate-200 shadow-lg">
-                        <span>Scroll down for pricing, services &amp; free estimate</span>
-                        <span class="text-gold-400 animate-bounce">&darr;</span>
-                    </div>
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                    <span class="px-4 py-2 rounded-full glass border border-white/20 text-xs sm:text-sm font-extrabold text-gold-400 shadow-lg">
+                        ★ Professional Results. Honest Service. Every Time.
+                    </span>
+                    <span class="hidden sm:inline-block px-4 py-2 rounded-full glass border border-white/20 text-xs font-bold text-slate-200">
+                        Scroll for Specials, Pricing &amp; Free Estimate &darr;
+                    </span>
                 </div>
 
-                <!-- Transparent Showcase Window (58vh) so the Full McMullin's Emblem & Mascot Shine Immediately -->
-                <div class="min-h-[58vh] sm:min-h-[60vh] pointer-events-none"></div>
+                <!-- Open Viewport Window for Background Emblem -->
+                <div class="min-h-[58vh] sm:min-h-[62vh] pointer-events-none"></div>
 
-                <!-- Translucent Glassmorphism Hero Action Card -->
-                <div class="glass-hero-card rounded-3xl p-6 sm:p-8 border-2 border-white/15 shadow-2xl">
-                    <div class="grid lg:grid-cols-12 gap-6 items-center">
-                        <div class="lg:col-span-7 text-center lg:text-left space-y-2">
-                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight uppercase leading-tight">
-                                We Make <span class="text-transparent bg-clip-text bg-gradient-to-r from-royal-400 via-sky-300 to-white">Dirt Disappear!</span>
-                            </h1>
-                            <p class="text-sm sm:text-base text-slate-200 leading-relaxed">
-                                Year-round Residential &amp; Commercial Exterior Cleaning across <strong>Gloucester, Camden, Salem &amp; Cumberland Counties</strong>. Fully insured with commercial-grade equipment and eco-friendly cleaning solutions.
-                            </p>
-                        </div>
-                        <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-end gap-3">
-                            <a href="#estimate" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-sm uppercase tracking-wide shadow-xl shadow-gold-500/25 transition-all text-center">
-                                Get Free Estimate &rarr;
-                            </a>
-                            <button type="button" onclick="switchView('gallery')" class="w-full sm:w-auto px-5 py-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-extrabold text-sm border border-white/20 shadow-lg transition-all flex items-center justify-center gap-2">
-                                <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                <span>Before &amp; Afters</span>
-                            </button>
-                        </div>
+                <!-- Hero CTA Card -->
+                <div class="glass rounded-3xl p-6 sm:p-8 border-2 border-white/15 shadow-2xl grid lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-2">
+                        <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight leading-tight">
+                            We Make <span class="text-royal-400">Dirt Disappear!</span>
+                        </h1>
+                        <p class="text-sm sm:text-base text-slate-200 leading-relaxed">
+                            Residential &amp; Commercial Exterior Cleaning across <strong>Gloucester, Camden, Salem &amp; Cumberland Counties</strong>. Fully insured with commercial-grade equipment and eco-friendly solutions.
+                        </p>
                     </div>
-                </div>
-
-            </section>
-
-            <!-- 2. Evergreen Current Specials & Driveway Pricing Section -->
-            <section id="pricing-specials" class="py-12 sm:py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="glass-panel rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-gold-500/70 shadow-2xl">
-                        
-                        <!-- Section Header -->
-                        <div class="text-center max-w-3xl mx-auto mb-10">
-                            <span class="inline-block px-4 py-1 rounded-full bg-gold-500 text-slatebrand-950 font-black text-xs uppercase tracking-wider mb-3">
-                                Current Specials &amp; Transparent Pricing
-                            </span>
-                            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
-                                Bundle &amp; Save Year-Round
-                            </h2>
-                            <p class="text-slate-200 mt-3 text-base sm:text-lg">
-                                Honest, straightforward pricing with zero guesswork—plus website booking discounts, bundle bonuses, and unlimited referral rewards.
-                            </p>
-                        </div>
-
-                        <!-- Featured Evergreen 10% OFF House Washing Banner -->
-                        <div class="mb-10 bg-gradient-to-r from-royal-700/90 via-royal-600/90 to-crimson-700/90 rounded-3xl p-6 sm:p-8 border-2 border-gold-400/70 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-                            <div class="space-y-1.5">
-                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slatebrand-950/70 text-gold-400 text-xs font-black uppercase tracking-wider">
-                                    ★ Website Booking Special
-                                </div>
-                                <h3 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-                                    Get <span class="text-gold-400">10% OFF</span> House Washing Over $200!
-                                </h3>
-                                <p class="text-sm sm:text-base text-slate-100">
-                                    Restore your home's siding, trim, and gutters at a discount—just mention this website offer when booking your free estimate.
-                                </p>
-                            </div>
-                            <button type="button" onclick="selectHouseWashDiscount()" class="w-full md:w-auto shrink-0 px-7 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-sm uppercase tracking-wide shadow-lg transition-all">
-                                Claim 10% OFF House Wash &rarr;
-                            </button>
-                        </div>
-
-                        <!-- Specials Grid: FREE Sidewalk Wash Combo + Driveway Pricing Tiers -->
-                        <div class="grid lg:grid-cols-2 gap-6">
-                            
-                            <!-- Special 1: House Wash + Driveway = FREE Sidewalk Wash -->
-                            <div class="bg-gradient-to-br from-royal-700/85 to-royal-950/90 rounded-3xl p-7 sm:p-8 border-2 border-royal-400/50 shadow-xl flex flex-col justify-between">
-                                <div>
-                                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slatebrand-950/70 text-gold-400 text-xs font-black uppercase tracking-wider mb-4">
-                                        ★ Year-Round Bundle Special
-                                    </div>
-                                    <h3 class="text-2xl sm:text-3xl font-black uppercase leading-tight mb-3 text-white">
-                                        Book a House Wash &amp; Driveway — Get a <span class="text-gold-400">FREE Sidewalk Wash!</span>
-                                    </h3>
-                                    <p class="text-royal-100 text-sm sm:text-base leading-relaxed mb-6">
-                                        Upgrade your entire front curb appeal in a single visit. When you schedule both a full House Wash and Driveway Cleaning together, we'll pressure wash your front sidewalk at <strong>$0 extra charge</strong>.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectBundleSpecial()" class="w-full sm:w-auto self-start px-6 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-sm uppercase tracking-wide transition-colors">
-                                    Claim House + Driveway + FREE Sidewalk Wash &rarr;
-                                </button>
-                            </div>
-
-                            <!-- Driveway Pricing Tiers (1-Car, 2-Car, 3-Car) -->
-                            <div class="grid sm:grid-cols-3 gap-4">
-                                <!-- 1-Car Driveway -->
-                                <div class="glass-card rounded-3xl p-6 border-2 border-white/15 hover:border-royal-400 transition-all text-center flex flex-col justify-between">
-                                    <div>
-                                        <div class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-royal-500/20 text-royal-300 font-extrabold text-[11px] uppercase tracking-wider mb-3">
-                                            1-Car Driveway
-                                        </div>
-                                        <div class="flex items-baseline justify-center gap-0.5 my-1">
-                                            <span class="text-xl font-bold text-gold-400">$</span>
-                                            <span class="text-5xl font-black text-gold-400 tracking-tight">120</span>
-                                        </div>
-                                        <p class="text-xs text-slate-300 mt-2 mb-5">
-                                            Complete surface wash &amp; rinse for single-car driveways.
-                                        </p>
-                                    </div>
-                                    <button type="button" onclick="selectDrivewayTier('1-Car Driveway ($120)')" class="w-full py-3 px-3 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-extrabold text-xs uppercase transition-colors">
-                                        Book 1-Car
-                                    </button>
-                                </div>
-
-                                <!-- 2-Car Driveway (Most Popular) -->
-                                <div class="bg-gradient-to-b from-royal-700/60 to-slatebrand-900/90 rounded-3xl p-6 border-2 border-gold-500 shadow-2xl shadow-gold-500/15 text-center flex flex-col justify-between relative">
-                                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-500 text-slatebrand-950 text-[10px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full whitespace-nowrap">
-                                        Most Popular
-                                    </div>
-                                    <div>
-                                        <div class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-gold-500/20 text-gold-400 font-extrabold text-[11px] uppercase tracking-wider mb-3">
-                                            2-Car Driveway
-                                        </div>
-                                        <div class="flex items-baseline justify-center gap-0.5 my-1">
-                                            <span class="text-xl font-bold text-gold-400">$</span>
-                                            <span class="text-5xl font-black text-gold-400 tracking-tight">165</span>
-                                        </div>
-                                        <p class="text-xs text-slate-200 mt-2 mb-5">
-                                            Deep rotary surface cleaning for 2-car driveways.
-                                        </p>
-                                    </div>
-                                    <button type="button" onclick="selectDrivewayTier('2-Car Driveway ($165)')" class="w-full py-3 px-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-xs uppercase transition-colors">
-                                        Book 2-Car
-                                    </button>
-                                </div>
-
-                                <!-- 3-Car Driveway -->
-                                <div class="glass-card rounded-3xl p-6 border-2 border-white/15 hover:border-royal-400 transition-all text-center flex flex-col justify-between">
-                                    <div>
-                                        <div class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-royal-500/20 text-royal-300 font-extrabold text-[11px] uppercase tracking-wider mb-3">
-                                            3-Car Driveway
-                                        </div>
-                                        <div class="flex items-baseline justify-center gap-0.5 my-1">
-                                            <span class="text-xl font-bold text-gold-400">$</span>
-                                            <span class="text-5xl font-black text-gold-400 tracking-tight">210</span>
-                                        </div>
-                                        <p class="text-xs text-slate-300 mt-2 mb-5">
-                                            Full-width restoration for large 3-car driveways.
-                                        </p>
-                                    </div>
-                                    <button type="button" onclick="selectDrivewayTier('3-Car Driveway ($210)')" class="w-full py-3 px-3 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-extrabold text-xs uppercase transition-colors">
-                                        Book 3-Car
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Refer a Friend & Earn $25 Banner -->
-                        <div class="mt-6 bg-gradient-to-br from-crimson-700/85 to-slatebrand-950/90 rounded-3xl p-7 sm:p-8 border-2 border-crimson-500/60 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6">
-                            <div class="space-y-2 max-w-2xl">
-                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-slatebrand-950/70 text-gold-400 text-xs font-black uppercase tracking-wider">
-                                    Unlimited Referrals • Unlimited Rewards
-                                </div>
-                                <h3 class="text-2xl sm:text-3xl font-black uppercase leading-tight text-white">
-                                    Refer a Friend &amp; <span class="text-gold-400">Earn $25!</span>
-                                </h3>
-                                <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
-                                    Refer a friend, neighbor, family member, or coworker! When they book and complete any pressure washing service of <strong>$200 or more</strong>, you receive <strong>$25</strong> in Cash, a Gift Card, or Service Credit—with zero limit on referrals.
-                                </p>
-                            </div>
-                            <a href="sms:8562838381?body=Hi%20McMullin's%20Pressure%20Washing!%20I'd%20like%20to%20refer%20a%20friend%20for%20the%20%2425%20referral%20reward%3A" class="w-full lg:w-auto shrink-0 px-7 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-sm uppercase tracking-wide text-center shadow-lg transition-all">
-                                Text a Referral &rarr;
-                            </a>
-                        </div>
+                    <div class="lg:col-span-5 flex flex-col sm:flex-row justify-end gap-3">
+                        <a href="#estimate" class="px-6 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-sm uppercase tracking-wide text-center shadow-lg">
+                            Get Free Estimate &rarr;
+                        </a>
+                        <button type="button" onclick="showTab('gallery')" class="px-5 py-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-extrabold text-sm border border-white/20 text-center">
+                            Before &amp; Afters
+                        </button>
                     </div>
                 </div>
             </section>
 
-            <!-- 3. All 9 Residential & Commercial Services Section -->
-            <section id="services" class="py-12 sm:py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="glass-panel rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 shadow-2xl">
-                        <div class="text-center max-w-3xl mx-auto mb-12">
-                            <span class="inline-block px-3.5 py-1 rounded-full bg-royal-500/20 border border-royal-400/40 text-royal-300 font-extrabold text-xs uppercase tracking-wider mb-3">
-                                Residential &amp; Commercial Services
-                            </span>
-                            <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">
-                                Our Exterior Cleaning Services
-                            </h2>
-                            <p class="text-slate-300 mt-3 text-base sm:text-lg">
-                                Tap any service below to automatically add it to your instant free estimate request.
-                            </p>
-                        </div>
-
-                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            
-                            <!-- 1. House Washing -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">House Washing</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Safe, low-pressure soft washing for vinyl, brick, and painted siding. Removes green algae, dirt, grime, mold, and mildew to restore your home's beauty without damage.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('House Washing')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select House Washing</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 2. Driveways & Concrete -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Driveways &amp; Concrete</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Commercial-grade rotary surface washing and concrete sealing. Eliminates deep-set dirt, tire marks, oil stains, and slippery black algae for a brighter, safer driveway.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Driveways & Concrete')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Driveways &amp; Concrete</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 3. Sidewalks & Walkways -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Sidewalks &amp; Walkways</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Restore bright, slip-free concrete sidewalks, front steps, and entry walkways. Plus, get a <strong>FREE Sidewalk Wash</strong> when bundling a House Wash &amp; Driveway!
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Sidewalks & Walkways')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Sidewalks &amp; Walkways</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 4. Patios & Pool Decks -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16M9 6v6m6 0v6"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Patios &amp; Pool Decks</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Deep cleaning for brick pavers, flagstone patios, concrete pool decks, and outdoor entertaining areas—blasting away moss, weeds, and grime between joints.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Patios & Pool Decks')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Patios &amp; Pool Decks</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 5. Fences & Decks -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4v16M10 4v16M15 4v16M20 4v16M3 8h18M3 16h18"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Fences &amp; Decks</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Bring weathered wood, composite decks, and green-stained vinyl fences back to life. Safely strips away organic buildup to protect your outdoor investment.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Fences & Decks')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Fences &amp; Decks</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 6. Roof Soft Washing -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14l8-8 8 8M6 12v7h12v-7"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Roof Soft Washing</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Gentle, zero-high-pressure roof treatment that safely removes black streaks, algae, and moss—restoring shingle color and extending the lifespan of your roof.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Roof Soft Washing')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Roof Soft Washing</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 7. Gutter Cleaning -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Gutter Cleaning</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Clear out packed leaves, twigs, and roof grit from gutters and downspouts to ensure proper drainage and prevent costly water damage before it starts.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Gutter Cleaning')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Gutter Cleaning</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 8. Trash Bins & Dumpsters -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-royal-400 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-royal-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Trash Bins &amp; Dumpsters</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        High-temperature degreasing, sanitizing, and deodorizing for residential trash cans and commercial dumpster pads—eliminating odors, bacteria, and pests.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Trash Bins & Dumpsters')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-royal-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Bins &amp; Dumpsters</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                            <!-- 9. Commercial Exterior Cleaning -->
-                            <div class="glass-card rounded-2xl p-6 border border-white/15 hover:border-crimson-500 hover:shadow-xl transition-all flex flex-col justify-between group">
-                                <div>
-                                    <div class="w-12 h-12 rounded-xl bg-crimson-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-105 transition-transform">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                                    </div>
-                                    <h3 class="text-xl font-black text-white mb-2">Commercial Exterior Cleaning</h3>
-                                    <p class="text-slate-300 text-sm leading-relaxed mb-5">
-                                        Keep your business looking sharp, welcoming, and safe for customers. Storefronts, entryways, sidewalks, drive-thrus, HOA common areas, and commercial buildings.
-                                    </p>
-                                </div>
-                                <button type="button" onclick="selectServiceAndScroll('Commercial Exterior Cleaning')" class="w-full py-3 px-4 rounded-xl bg-white/10 group-hover:bg-crimson-600 text-white font-bold text-sm transition-colors flex items-center justify-center gap-2 border border-white/10">
-                                    <span>Select Commercial Cleaning</span>
-                                    <span>&rarr;</span>
-                                </button>
-                            </div>
-
-                        </div>
+            <!-- Specials & Driveway Pricing -->
+            <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="glass rounded-3xl p-6 sm:p-10 border-2 border-gold-500/70 shadow-2xl space-y-8">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="inline-block px-4 py-1 rounded-full bg-gold-500 text-navy-950 font-black text-xs uppercase tracking-wider mb-3">
+                            Current Specials &amp; Driveway Pricing
+                        </span>
+                        <h2 class="text-3xl sm:text-5xl font-black uppercase">Bundle &amp; Save Year-Round</h2>
                     </div>
-                </div>
-            </section>
 
-            <!-- 4. Why Choose Us & South Jersey Service Area Section -->
-            <section id="why-us" class="py-12 sm:py-16">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="glass-panel rounded-3xl p-6 sm:p-10 lg:p-12 border border-white/15 shadow-2xl">
-                        <div class="grid lg:grid-cols-12 gap-10 items-start">
-                            
-                            <!-- Left Column: Why Choose Us -->
-                            <div class="lg:col-span-7 space-y-6">
-                                <div>
-                                    <span class="text-gold-400 font-extrabold text-xs uppercase tracking-wider">Why Choose McMullin's</span>
-                                    <h2 class="text-3xl sm:text-4xl font-black text-white uppercase mt-1">
-                                        Fast, Friendly &amp; Trusted!
-                                    </h2>
-                                    <p class="text-slate-300 mt-3 text-base leading-relaxed">
-                                        We treat your home or commercial property like our own—combining commercial-grade equipment with safe, surface-appropriate cleaning methods.
-                                    </p>
-                                </div>
-
-                                <div class="grid sm:grid-cols-2 gap-4">
-                                    <!-- Pillar 1 -->
-                                    <div class="p-5 rounded-2xl glass-card border border-white/15 flex items-start gap-3.5">
-                                        <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-black text-white text-base">Fully Insured</h3>
-                                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Complete liability coverage for total peace of mind on every residential and commercial job.</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pillar 2 -->
-                                    <div class="p-5 rounded-2xl glass-card border border-white/15 flex items-start gap-3.5">
-                                        <div class="w-9 h-9 rounded-lg bg-royal-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-black text-white text-base">Professional Equipment</h3>
-                                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Commercial-grade pressure washers, soft-wash systems, and rotary surface cleaners for streak-free results.</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pillar 3 -->
-                                    <div class="p-5 rounded-2xl glass-card border border-white/15 flex items-start gap-3.5">
-                                        <div class="w-9 h-9 rounded-lg bg-royal-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-black text-white text-base">Eco-Friendly Cleaning Solutions</h3>
-                                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Biodegradable detergents that kill mold, mildew, and algae at the root while keeping pets and landscaping safe.</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pillar 4 -->
-                                    <div class="p-5 rounded-2xl glass-card border border-white/15 flex items-start gap-3.5">
-                                        <div class="w-9 h-9 rounded-lg bg-royal-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-black text-white text-base">Reliable &amp; On-Time</h3>
-                                            <p class="text-xs sm:text-sm text-slate-300 mt-1">Clear communication, punctual arrivals, and honest estimates with zero surprise add-ons.</p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pillar 5 -->
-                                    <div class="sm:col-span-2 p-5 rounded-2xl bg-gold-500/15 border border-gold-400/50 flex items-start gap-3.5">
-                                        <div class="w-9 h-9 rounded-lg bg-gold-500 text-slatebrand-950 flex items-center justify-center shrink-0 mt-0.5 font-black">
-                                            ★
-                                        </div>
-                                        <div>
-                                            <h3 class="font-black text-white text-base">Satisfaction Guaranteed</h3>
-                                            <p class="text-xs sm:text-sm text-slate-200 mt-1">We aren't happy until you love the way your property looks. Thank you for supporting a local South Jersey business!</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Right Column: South Jersey Service Area Card -->
-                            <div class="lg:col-span-5">
-                                <div class="glass-card text-white rounded-3xl p-7 sm:p-8 border-2 border-royal-500/40 shadow-xl">
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-11 h-11 rounded-xl bg-crimson-600 flex items-center justify-center text-white shrink-0">
-                                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-                                        </div>
-                                        <div>
-                                            <span class="text-xs font-extrabold uppercase tracking-wider text-gold-400">Proudly Serving South Jersey</span>
-                                            <h3 class="text-2xl font-black uppercase">Service Areas</h3>
-                                        </div>
-                                    </div>
-
-                                    <p class="text-sm text-slate-300 mb-6 leading-relaxed">
-                                        We provide mobile residential and commercial exterior cleaning across four major South Jersey counties and surrounding towns:
-                                    </p>
-
-                                    <div class="grid grid-cols-2 gap-3 mb-6">
-                                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/15">
-                                            <div class="text-gold-400 font-black text-sm uppercase">★ Gloucester County</div>
-                                            <div class="text-xs text-slate-300 mt-1">Deptford, Sewell, Woodbury, Washington Twp, Mullica Hill, Glassboro</div>
-                                        </div>
-                                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/15">
-                                            <div class="text-gold-400 font-black text-sm uppercase">★ Camden County</div>
-                                            <div class="text-xs text-slate-300 mt-1">Cherry Hill, Voorhees, Sicklerville, Blackwood, Haddonfield</div>
-                                        </div>
-                                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/15">
-                                            <div class="text-gold-400 font-black text-sm uppercase">★ Salem County</div>
-                                            <div class="text-xs text-slate-300 mt-1">Woodstown, Pilesgrove, Pennsville, Elmer, Carneys Point</div>
-                                        </div>
-                                        <div class="p-3.5 rounded-xl bg-white/5 border border-white/15">
-                                            <div class="text-gold-400 font-black text-sm uppercase">★ Cumberland County</div>
-                                            <div class="text-xs text-slate-300 mt-1">Vineland, Millville, Bridgeton &amp; Surrounding Areas</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="p-4 rounded-2xl bg-royal-600/25 border border-royal-400/40 text-center">
-                                        <p class="text-xs font-bold text-slate-200 mb-1.5">Not sure if you're in our radius? Call or text us!</p>
-                                        <a href="tel:8562838381" class="inline-flex items-center justify-center gap-2 text-lg font-black text-gold-400 hover:text-gold-300">
-                                            <span>(856) 283-8381</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
+                    <!-- 10% OFF House Wash Banner -->
+                    <div class="bg-gradient-to-r from-royal-700 via-royal-600 to-crimson-700 rounded-3xl p-6 sm:p-8 border-2 border-gold-400/70 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                        <div class="space-y-1">
+                            <span class="text-xs font-black uppercase tracking-wider text-gold-400">★ Website Booking Special</span>
+                            <h3 class="text-2xl sm:text-3xl font-black uppercase">Get <span class="text-gold-400">10% OFF</span> House Washing Over $200!</h3>
+                            <p class="text-sm text-slate-100">Mention this website offer when requesting your free estimate.</p>
                         </div>
+                        <button type="button" onclick="claimHouseDiscount()" class="w-full md:w-auto px-7 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-sm uppercase shrink-0">
+                            Claim 10% OFF &rarr;
+                        </button>
                     </div>
-                </div>
-            </section>
 
-            <!-- 5. Zero-Backend Interactive Free Estimate Builder -->
-            <section id="estimate" class="py-12 sm:py-16">
-                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="glass-panel rounded-3xl shadow-2xl border-2 border-white/15 p-6 sm:p-10">
-                        <div class="text-center mb-8">
-                            <span class="inline-block px-4 py-1 rounded-full bg-crimson-600 text-white font-black text-xs uppercase tracking-wider mb-3">
-                                100% Free • Fast Response
-                            </span>
-                            <h2 class="text-3xl sm:text-4xl font-black text-white uppercase">
-                                Build Your Free Estimate
-                            </h2>
-                            <p class="text-slate-300 mt-3 max-w-2xl mx-auto">
-                                Select the services you need below and send your quote request directly to <strong>McMullin's Pressure Washing LLC</strong> via <strong>Text (SMS)</strong> or <strong>Email</strong>.
-                            </p>
-                        </div>
-
-                        <form id="quoteForm" class="space-y-8" onsubmit="return false;">
-                            
-                            <!-- Step 1: Select Services -->
+                    <!-- Combo Deal + 1/2/3 Car Driveway Tiers -->
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-br from-royal-700/90 to-navy-950 rounded-3xl p-7 border-2 border-royal-400/50 flex flex-col justify-between">
                             <div>
-                                <label class="block text-base font-black text-white mb-3">
-                                    1. Select Services Needed <span class="text-slate-400 font-semibold text-xs">(Check all that apply)</span>
-                                </label>
-                                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3" id="serviceCheckboxes">
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="House Washing" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">House Washing</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Driveways & Concrete" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Driveways &amp; Concrete</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Sidewalks & Walkways" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Sidewalks &amp; Walkways</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Patios & Pool Decks" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Patios &amp; Pool Decks</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Fences & Decks" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Fences &amp; Decks</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Roof Soft Washing" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Roof Soft Washing</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Gutter Cleaning" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Gutter Cleaning</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-royal-400 transition-all has-[:checked]:border-gold-400 has-[:checked]:bg-royal-600/30">
-                                        <input type="checkbox" name="service" value="Trash Bins & Dumpsters" class="w-4 h-4 text-royal-600 rounded focus:ring-royal-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Trash Bins &amp; Dumpsters</span>
-                                    </label>
-                                    <label class="cursor-pointer flex items-center p-3.5 rounded-xl border border-white/20 bg-white/5 hover:border-crimson-400 transition-all has-[:checked]:border-crimson-500 has-[:checked]:bg-crimson-600/30">
-                                        <input type="checkbox" name="service" value="Commercial Exterior Cleaning" class="w-4 h-4 text-crimson-600 rounded focus:ring-crimson-500 mr-3">
-                                        <span class="font-bold text-sm text-white">Commercial Cleaning</span>
-                                    </label>
-                                </div>
+                                <span class="inline-block px-3 py-1 rounded-lg bg-navy-950/80 text-gold-400 text-xs font-black uppercase mb-3">★ Year-Round Bundle</span>
+                                <h3 class="text-2xl sm:text-3xl font-black uppercase mb-3">
+                                    Book a House Wash &amp; Driveway — Get a <span class="text-gold-400">FREE Sidewalk Wash!</span>
+                                </h3>
+                                <p class="text-slate-200 text-sm sm:text-base mb-6">
+                                    Schedule both a House Wash and Driveway Cleaning together and we'll clean your front sidewalk at <strong>$0 extra charge</strong>.
+                                </p>
                             </div>
+                            <button type="button" onclick="claimComboSpecial()" class="self-start px-6 py-3.5 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-sm uppercase">
+                                Claim Bundle Special &rarr;
+                            </button>
+                        </div>
 
-                            <!-- Step 2: Property Type & Optional Driveway Size -->
-                            <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div class="glass rounded-3xl p-6 border border-white/15 text-center flex flex-col justify-between">
                                 <div>
-                                    <label for="propertyType" class="block text-sm font-black text-white mb-2">
-                                        2. Property Type
-                                    </label>
-                                    <select id="propertyType" class="w-full rounded-xl border-white/20 border px-4 py-3 text-sm font-semibold text-white focus:border-gold-400 focus:outline-none bg-slatebrand-900">
-                                        <option value="Residential">Residential Property</option>
-                                        <option value="Commercial">Commercial Property</option>
-                                    </select>
+                                    <span class="text-xs font-extrabold uppercase text-royal-400">1-Car Driveway</span>
+                                    <div class="text-5xl font-black text-gold-400 my-2">$120</div>
+                                    <p class="text-xs text-slate-300 mb-5">Complete surface wash &amp; rinse for single-car driveways.</p>
                                 </div>
+                                <button type="button" onclick="pickDriveway('1-Car Driveway ($120)')" class="w-full py-3 rounded-xl bg-royal-600 hover:bg-royal-500 font-extrabold text-xs uppercase">Book 1-Car</button>
+                            </div>
 
+                            <div class="bg-royal-700/50 rounded-3xl p-6 border-2 border-gold-500 text-center flex flex-col justify-between relative">
+                                <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-500 text-navy-950 text-[10px] font-black uppercase px-3 py-0.5 rounded-full">Most Popular</span>
                                 <div>
-                                    <label for="drivewaySize" class="block text-sm font-black text-white mb-2">
-                                        3. Driveway Size <span class="text-slate-400 font-semibold text-xs">(Optional)</span>
-                                    </label>
-                                    <select id="drivewaySize" class="w-full rounded-xl border-white/20 border px-4 py-3 text-sm font-semibold text-white focus:border-gold-400 focus:outline-none bg-slatebrand-900">
-                                        <option value="Not applicable / Quote needed">Not applicable / Custom quote</option>
-                                        <option value="1-Car Driveway ($120)">1-Car Driveway ($120)</option>
-                                        <option value="2-Car Driveway ($165)">2-Car Driveway ($165)</option>
-                                        <option value="3-Car Driveway ($210)">3-Car Driveway ($210)</option>
-                                        <option value="House Wash + Driveway Combo (FREE Sidewalk Wash!)">House Wash + Driveway Combo (FREE Sidewalk Wash!)</option>
-                                    </select>
+                                    <span class="text-xs font-extrabold uppercase text-gold-400">2-Car Driveway</span>
+                                    <div class="text-5xl font-black text-gold-400 my-2">$165</div>
+                                    <p class="text-xs text-slate-200 mb-5">Deep rotary surface cleaning for 2-car driveways.</p>
                                 </div>
+                                <button type="button" onclick="pickDriveway('2-Car Driveway ($165)')" class="w-full py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-xs uppercase">Book 2-Car</button>
                             </div>
 
-                            <!-- Step 3: Name & Address/Town -->
-                            <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="glass rounded-3xl p-6 border border-white/15 text-center flex flex-col justify-between">
                                 <div>
-                                    <label for="customerName" class="block text-sm font-black text-white mb-1.5">4. Your Name</label>
-                                    <input type="text" id="customerName" placeholder="e.g., Sarah Miller" class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm font-medium text-white placeholder-slate-400 focus:border-gold-400 focus:outline-none bg-slatebrand-900/90">
+                                    <span class="text-xs font-extrabold uppercase text-royal-400">3-Car Driveway</span>
+                                    <div class="text-5xl font-black text-gold-400 my-2">$210</div>
+                                    <p class="text-xs text-slate-300 mb-5">Full-width restoration for large 3-car driveways.</p>
                                 </div>
-                                <div>
-                                    <label for="customerAddress" class="block text-sm font-black text-white mb-1.5">5. Address or Town (South Jersey)</label>
-                                    <input type="text" id="customerAddress" placeholder="e.g., Deptford, Sewell, Cherry Hill..." class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm font-medium text-white placeholder-slate-400 focus:border-gold-400 focus:outline-none bg-slatebrand-900/90">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="customerNotes" class="block text-sm font-black text-white mb-1.5">
-                                    Additional Notes <span class="text-slate-400 font-semibold text-xs">(Optional — e.g., referred by a friend, specific stains, preferred days)</span>
-                                </label>
-                                <textarea id="customerNotes" rows="2" placeholder="Any extra details you'd like us to know..." class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm font-medium text-white placeholder-slate-400 focus:border-gold-400 focus:outline-none bg-slatebrand-900/90"></textarea>
-                            </div>
-
-                            <!-- Instant Send Buttons (Zero Backend) -->
-                            <div class="pt-4 border-t border-white/15">
-                                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-300 mb-3 text-center sm:text-left">
-                                    Send your pre-filled quote request directly:
-                                </p>
-                                <div class="grid sm:grid-cols-2 gap-4">
-                                    <!-- Send via SMS -->
-                                    <button type="button" onclick="sendViaSMS()" class="w-full py-4 px-6 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-base shadow-lg shadow-gold-500/25 transition-all flex items-center justify-center gap-2.5">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-                                        <span>Send via Text (SMS)</span>
-                                    </button>
-
-                                    <!-- Send via Email -->
-                                    <button type="button" onclick="sendViaEmail()" class="w-full py-4 px-6 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-black text-base shadow-lg shadow-royal-600/25 transition-all flex items-center justify-center gap-2.5 border border-white/15">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                        <span>Send via Email</span>
-                                    </button>
-                                </div>
-
-                                <!-- Desktop Copy Helper -->
-                                <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-300">
-                                    <span>Using a desktop browser? Copy your formatted quote to paste anywhere:</span>
-                                    <button type="button" onclick="copyQuoteDetails()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white/15 hover:bg-white/25 text-white font-bold transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                                        <span id="copyBtnText">Copy Quote Request</span>
-                                    </button>
-                                </div>
-                                <div id="statusBanner" class="hidden mt-4 p-3.5 rounded-xl bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-sm font-bold text-center"></div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 6. FAQ Section -->
-            <section id="faq" class="py-12 pb-20">
-                <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl">
-                        <div class="text-center mb-8">
-                            <h2 class="text-2xl sm:text-3xl font-black text-white uppercase">Frequently Asked Questions</h2>
-                        </div>
-
-                        <div class="space-y-3">
-                            <div class="faq-item border border-white/15 rounded-2xl glass-card overflow-hidden">
-                                <button type="button" onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-extrabold text-white hover:bg-white/5 transition-colors">
-                                    <span>How do I get the FREE Sidewalk Wash special?</span>
-                                    <svg class="faq-icon w-5 h-5 text-gold-400 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
-                                </button>
-                                <div class="faq-content px-5">
-                                    <p class="pb-5 text-sm text-slate-300 leading-relaxed">
-                                        Simply book both a <strong>House Wash</strong> and a <strong>Driveway Cleaning</strong> together—either through our quote builder above or when you call/text <strong>(856) 283-8381</strong>—and we'll pressure wash your front sidewalk completely free!
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item border border-white/15 rounded-2xl glass-card overflow-hidden">
-                                <button type="button" onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-extrabold text-white hover:bg-white/5 transition-colors">
-                                    <span>Is your house and roof washing safe for vinyl siding and shingles?</span>
-                                    <svg class="faq-icon w-5 h-5 text-gold-400 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
-                                </button>
-                                <div class="faq-content px-5">
-                                    <p class="pb-5 text-sm text-slate-300 leading-relaxed">
-                                        Yes! We use low-pressure soft washing with eco-friendly cleaning solutions on siding and roofs. It safely eliminates black streaks, green algae, mold, and mildew without the risk of high-pressure damage.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="faq-item border border-white/15 rounded-2xl glass-card overflow-hidden">
-                                <button type="button" onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-extrabold text-white hover:bg-white/5 transition-colors">
-                                    <span>How does the $25 Referral Program work?</span>
-                                    <svg class="faq-icon w-5 h-5 text-gold-400 transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
-                                </button>
-                                <div class="faq-content px-5">
-                                    <p class="pb-5 text-sm text-slate-300 leading-relaxed">
-                                        Have your friend, neighbor, or family member mention your name when booking any job of <strong>$200 or more</strong>. Once their service is completed, you'll receive <strong>$25</strong> in cash, a gift card, or credit toward your next wash—with no limit on how many people you refer!
-                                    </p>
-                                </div>
+                                <button type="button" onclick="pickDriveway('3-Car Driveway ($210)')" class="w-full py-3 rounded-xl bg-royal-600 hover:bg-royal-500 font-extrabold text-xs uppercase">Book 3-Car</button>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
 
-        </main>
-
-        <!-- ===================================================================== -->
-        <!-- VIEW 2: SECONDARY PAGE — BEFORE & AFTERS GALLERY                      -->
-        <!-- ===================================================================== -->
-        <section id="gallery-view" class="hidden min-h-screen py-10 sm:py-14">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <!-- Gallery Header Panel -->
-                <div class="glass-panel rounded-3xl p-8 sm:p-12 border-2 border-gold-500/70 text-center mb-10 shadow-2xl">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-black uppercase tracking-wider text-gold-400 mb-4">
-                        ★ See The Difference Immediately!
-                    </div>
-                    <h1 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
-                        Our Work &amp; <span class="text-royal-400">Before &amp; Afters</span>
-                    </h1>
-                    <p class="text-slate-200 mt-4 max-w-2xl mx-auto text-base sm:text-lg">
-                        Drag the yellow slider left and right on any project below to see how <strong>McMullin's Pressure Washing LLC</strong> restores driveways, roofs, siding, and decks across South Jersey.
-                    </p>
-
-                    <!-- Category Filter Pills -->
-                    <div class="flex flex-wrap items-center justify-center gap-2.5 mt-8">
-                        <button type="button" onclick="filterGallery('all', this)" class="gallery-filter-btn px-5 py-2.5 rounded-xl bg-gold-500 text-slatebrand-950 font-black text-xs sm:text-sm uppercase tracking-wide shadow">
-                            All Projects (6)
-                        </button>
-                        <button type="button" onclick="filterGallery('driveways', this)" class="gallery-filter-btn px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wide">
-                            Driveways &amp; Concrete
-                        </button>
-                        <button type="button" onclick="filterGallery('roofs', this)" class="gallery-filter-btn px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wide">
-                            Roofs &amp; Siding
-                        </button>
-                        <button type="button" onclick="filterGallery('decks', this)" class="gallery-filter-btn px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wide">
-                            Decks, Fences &amp; Patios
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Gallery Projects Grid -->
-                <div class="grid md:grid-cols-2 gap-8" id="galleryGrid">
-
-                    <!-- Project 1: Concrete Driveway Restoration -->
-                    <article data-category="driveways" class="gallery-card glass-panel rounded-3xl overflow-hidden shadow-xl border border-white/15 flex flex-col justify-between">
-                        <div>
-                            <div class="ba-container h-64 sm:h-72 bg-slate-900">
-                                <!-- AFTER Layer -->
-                                <div class="w-full h-full relative">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="130" fill="#BAE6FD"/>
-                                        <rect x="0" y="95" width="600" height="35" fill="#4ADE80"/>
-                                        <rect x="60" y="25" width="480" height="90" fill="#9A3412"/>
-                                        <polygon points="45,25 300,0 555,25" fill="#475569"/>
-                                        <rect x="110" y="45" width="160" height="70" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-                                        <rect x="330" y="45" width="160" height="70" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-                                        <polygon points="100,115 500,115 585,340 15,340" fill="#E2E8F0"/>
-                                        <line x1="300" y1="115" x2="300" y2="340" stroke="#94A3B8" stroke-width="3"/>
-                                        <line x1="72" y1="190" x2="528" y2="190" stroke="#94A3B8" stroke-width="3"/>
-                                        <line x1="42" y1="265" x2="558" y2="265" stroke="#94A3B8" stroke-width="3"/>
-                                        <polygon points="0,115 100,115 15,340 0,340" fill="#22C55E"/>
-                                        <polygon points="500,115 600,115 600,340 585,340" fill="#22C55E"/>
-                                    </svg>
-                                    <span class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wider shadow">After</span>
-                                </div>
-
-                                <!-- BEFORE Layer -->
-                                <div class="ba-before-layer">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full max-w-none" style="width: 100%; height: 100%;">
-                                        <rect width="600" height="130" fill="#94A3B8"/>
-                                        <rect x="0" y="95" width="600" height="35" fill="#15803D"/>
-                                        <rect x="60" y="25" width="480" height="90" fill="#7C2D12"/>
-                                        <polygon points="45,25 300,0 555,25" fill="#334155"/>
-                                        <rect x="110" y="45" width="160" height="70" fill="#CBD5E1" stroke="#64748B" stroke-width="2"/>
-                                        <rect x="330" y="45" width="160" height="70" fill="#CBD5E1" stroke="#64748B" stroke-width="2"/>
-                                        <polygon points="100,115 500,115 585,340 15,340" fill="#57534E"/>
-                                        <ellipse cx="220" cy="210" rx="65" ry="38" fill="#3F3F46" opacity="0.7"/>
-                                        <ellipse cx="385" cy="255" rx="75" ry="42" fill="#292524" opacity="0.65"/>
-                                        <ellipse cx="195" cy="295" rx="55" ry="28" fill="#1C1917" opacity="0.6"/>
-                                        <line x1="300" y1="115" x2="300" y2="340" stroke="#292524" stroke-width="4"/>
-                                        <line x1="72" y1="190" x2="528" y2="190" stroke="#292524" stroke-width="4"/>
-                                        <line x1="42" y1="265" x2="558" y2="265" stroke="#292524" stroke-width="4"/>
-                                        <polygon points="0,115 100,115 15,340 0,340" fill="#166534"/>
-                                        <polygon points="500,115 600,115 600,340 585,340" fill="#166534"/>
-                                    </svg>
-                                    <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-crimson-600 text-white text-xs font-black uppercase tracking-wider shadow">Before</span>
-                                </div>
-
-                                <div class="ba-handle w-10 h-10 rounded-full bg-gold-500 text-slatebrand-950 shadow-xl border-2 border-white flex items-center justify-center font-black text-xs">
-                                    &harr;
-                                </div>
-                                <input type="range" min="5" max="95" value="50" aria-label="Compare before and after driveway wash" oninput="updateSlider(this)" class="ba-range">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 text-xs font-extrabold uppercase">Driveways &amp; Concrete</span>
-                                    <span class="text-xs font-bold text-slate-400">Washington Twp, NJ</span>
-                                </div>
-                                <h3 class="text-xl font-black text-white">2-Car Concrete Driveway Deep Surface Clean</h3>
-                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
-                                    Commercial rotary surface cleaner stripped away years of black algae, tire marks, and embedded grime for bright, uniform curb appeal.
-                                </p>
-                            </div>
+                    <!-- $25 Referral Banner -->
+                    <div class="bg-gradient-to-r from-crimson-700/90 to-navy-950 rounded-3xl p-6 sm:p-8 border-2 border-crimson-600 flex flex-col lg:flex-row items-center justify-between gap-6">
+                        <div class="space-y-1 max-w-2xl">
+                            <span class="text-xs font-black uppercase text-gold-400">Unlimited Referrals • Unlimited Rewards</span>
+                            <h3 class="text-2xl sm:text-3xl font-black uppercase">Refer a Friend &amp; <span class="text-gold-400">Earn $25!</span></h3>
+                            <p class="text-sm sm:text-base text-slate-200">
+                                When your friend books and completes any service of <strong>$200 or more</strong>, you receive <strong>$25</strong> Cash, Gift Card, or Service Credit!
+                            </p>
                         </div>
-
-                        <div class="px-6 pb-6">
-                            <button type="button" onclick="bookFromGallery('Driveways & Concrete', '2-Car Driveway ($165)')" class="w-full py-3 px-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-bold text-sm transition-colors">
-                                Book 2-Car Driveway ($165) &rarr;
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Project 2: Roof Black Streak & Moss Removal -->
-                    <article data-category="roofs" class="gallery-card glass-panel rounded-3xl overflow-hidden shadow-xl border border-white/15 flex flex-col justify-between">
-                        <div>
-                            <div class="ba-container h-64 sm:h-72 bg-slate-900">
-                                <!-- AFTER Layer -->
-                                <div class="w-full h-full relative">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#7DD3FC"/>
-                                        <polygon points="40,210 300,55 560,210" fill="#64748B" stroke="#334155" stroke-width="3"/>
-                                        <line x1="120" y1="162" x2="480" y2="162" stroke="#475569" stroke-width="2"/>
-                                        <line x1="185" y1="124" x2="415" y2="124" stroke="#475569" stroke-width="2"/>
-                                        <rect x="45" y="210" width="510" height="14" fill="#FFFFFF"/>
-                                        <rect x="75" y="224" width="450" height="116" fill="#F1F5F9"/>
-                                        <rect x="145" y="250" width="90" height="65" fill="#38BDF8" stroke="#FFFFFF" stroke-width="4"/>
-                                        <rect x="365" y="250" width="90" height="65" fill="#38BDF8" stroke="#FFFFFF" stroke-width="4"/>
-                                    </svg>
-                                    <span class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wider shadow">After</span>
-                                </div>
-
-                                <!-- BEFORE Layer -->
-                                <div class="ba-before-layer">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#94A3B8"/>
-                                        <polygon points="40,210 300,55 560,210" fill="#334155" stroke="#1E293B" stroke-width="3"/>
-                                        <path d="M160 140 L140 208 H220 L215 110 Z" fill="#1C1917" opacity="0.75"/>
-                                        <path d="M295 62 L270 208 H375 L340 85 Z" fill="#1C1917" opacity="0.8"/>
-                                        <ellipse cx="235" cy="175" rx="35" ry="18" fill="#3F6212" opacity="0.85"/>
-                                        <ellipse cx="385" cy="182" rx="42" ry="16" fill="#365314" opacity="0.85"/>
-                                        <rect x="45" y="210" width="510" height="14" fill="#CBD5E1"/>
-                                        <rect x="75" y="224" width="450" height="116" fill="#CBD5E1"/>
-                                        <rect x="145" y="250" width="90" height="65" fill="#64748B" stroke="#E2E8F0" stroke-width="4"/>
-                                        <rect x="365" y="250" width="90" height="65" fill="#64748B" stroke="#E2E8F0" stroke-width="4"/>
-                                    </svg>
-                                    <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-crimson-600 text-white text-xs font-black uppercase tracking-wider shadow">Before</span>
-                                </div>
-
-                                <div class="ba-handle w-10 h-10 rounded-full bg-gold-500 text-slatebrand-950 shadow-xl border-2 border-white flex items-center justify-center font-black text-xs">
-                                    &harr;
-                                </div>
-                                <input type="range" min="5" max="95" value="50" aria-label="Compare before and after roof soft wash" oninput="updateSlider(this)" class="ba-range">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 text-xs font-extrabold uppercase">Roof Soft Washing</span>
-                                    <span class="text-xs font-bold text-slate-400">Cherry Hill, NJ</span>
-                                </div>
-                                <h3 class="text-xl font-black text-white">Soft-Wash Roof Black Streak &amp; Moss Removal</h3>
-                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
-                                    Low-pressure roof treatment safely eliminated Gloeocapsa magma black streaks and green moss without damaging shingle granules.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="px-6 pb-6">
-                            <button type="button" onclick="bookFromGallery('Roof Soft Washing')" class="w-full py-3 px-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-bold text-sm transition-colors">
-                                Get Free Roof Wash Estimate &rarr;
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Project 3: Vinyl Siding House Soft Wash -->
-                    <article data-category="roofs" class="gallery-card glass-panel rounded-3xl overflow-hidden shadow-xl border border-white/15 flex flex-col justify-between">
-                        <div>
-                            <div class="ba-container h-64 sm:h-72 bg-slate-900">
-                                <!-- AFTER Layer -->
-                                <div class="w-full h-full relative">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#E0F2FE"/>
-                                        <rect x="50" y="30" width="500" height="270" fill="#F8FAFC"/>
-                                        <g stroke="#CBD5E1" stroke-width="2">
-                                            <line x1="50" y1="60" x2="550" y2="60"/><line x1="50" y1="90" x2="550" y2="90"/>
-                                            <line x1="50" y1="120" x2="550" y2="120"/><line x1="50" y1="150" x2="550" y2="150"/>
-                                            <line x1="50" y1="180" x2="550" y2="180"/><line x1="50" y1="210" x2="550" y2="210"/>
-                                            <line x1="50" y1="240" x2="550" y2="240"/><line x1="50" y1="270" x2="550" y2="270"/>
-                                        </g>
-                                        <rect x="115" y="90" width="24" height="120" fill="#1E3A8A"/>
-                                        <rect x="145" y="90" width="85" height="120" fill="#BAE6FD" stroke="#FFFFFF" stroke-width="4"/>
-                                        <rect x="236" y="90" width="24" height="120" fill="#1E3A8A"/>
-                                        <rect x="340" y="90" width="24" height="120" fill="#1E3A8A"/>
-                                        <rect x="370" y="90" width="85" height="120" fill="#BAE6FD" stroke="#FFFFFF" stroke-width="4"/>
-                                        <rect x="461" y="90" width="24" height="120" fill="#1E3A8A"/>
-                                        <rect x="0" y="295" width="600" height="45" fill="#22C55E"/>
-                                    </svg>
-                                    <span class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wider shadow">After</span>
-                                </div>
-
-                                <!-- BEFORE Layer -->
-                                <div class="ba-before-layer">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#94A3B8"/>
-                                        <rect x="50" y="30" width="500" height="270" fill="#CBD5E1"/>
-                                        <rect x="50" y="30" width="500" height="270" fill="#4D7C0F" opacity="0.48"/>
-                                        <ellipse cx="180" cy="235" rx="110" ry="50" fill="#365314" opacity="0.55"/>
-                                        <ellipse cx="420" cy="185" rx="125" ry="65" fill="#3F6212" opacity="0.5"/>
-                                        <g stroke="#64748B" stroke-width="2">
-                                            <line x1="50" y1="60" x2="550" y2="60"/><line x1="50" y1="90" x2="550" y2="90"/>
-                                            <line x1="50" y1="120" x2="550" y2="120"/><line x1="50" y1="150" x2="550" y2="150"/>
-                                            <line x1="50" y1="180" x2="550" y2="180"/><line x1="50" y1="210" x2="550" y2="210"/>
-                                            <line x1="50" y1="240" x2="550" y2="240"/><line x1="50" y1="270" x2="550" y2="270"/>
-                                        </g>
-                                        <rect x="115" y="90" width="24" height="120" fill="#1E293B"/>
-                                        <rect x="145" y="90" width="85" height="120" fill="#64748B" stroke="#CBD5E1" stroke-width="4"/>
-                                        <rect x="236" y="90" width="24" height="120" fill="#1E293B"/>
-                                        <rect x="340" y="90" width="24" height="120" fill="#1E293B"/>
-                                        <rect x="370" y="90" width="85" height="120" fill="#64748B" stroke="#CBD5E1" stroke-width="4"/>
-                                        <rect x="461" y="90" width="24" height="120" fill="#1E293B"/>
-                                        <rect x="0" y="295" width="600" height="45" fill="#15803D"/>
-                                    </svg>
-                                    <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-crimson-600 text-white text-xs font-black uppercase tracking-wider shadow">Before</span>
-                                </div>
-
-                                <div class="ba-handle w-10 h-10 rounded-full bg-gold-500 text-slatebrand-950 shadow-xl border-2 border-white flex items-center justify-center font-black text-xs">
-                                    &harr;
-                                </div>
-                                <input type="range" min="5" max="95" value="50" aria-label="Compare before and after house soft wash" oninput="updateSlider(this)" class="ba-range">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 text-xs font-extrabold uppercase">House Washing</span>
-                                    <span class="text-xs font-bold text-slate-400">Deptford, NJ</span>
-                                </div>
-                                <h3 class="text-xl font-black text-white">North-Side Green Algae Siding Restoration</h3>
-                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
-                                    Eco-friendly soft wash melted away years of thick green algae and mildew buildup on shaded vinyl siding, shutters, and trim.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="px-6 pb-6">
-                            <button type="button" onclick="bookFromGallery('House Washing')" class="w-full py-3 px-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-bold text-sm transition-colors">
-                                Get Free House Wash Estimate &rarr;
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Project 4: Wood Deck & Vinyl Fence Restoration -->
-                    <article data-category="decks" class="gallery-card glass-panel rounded-3xl overflow-hidden shadow-xl border border-white/15 flex flex-col justify-between">
-                        <div>
-                            <div class="ba-container h-64 sm:h-72 bg-slate-900">
-                                <!-- AFTER Layer -->
-                                <div class="w-full h-full relative">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="150" fill="#BAE6FD"/>
-                                        <rect x="0" y="130" width="600" height="35" fill="#22C55E"/>
-                                        <rect x="0" y="165" width="600" height="175" fill="#D97706"/>
-                                        <g stroke="#92400E" stroke-width="3">
-                                            <line x1="0" y1="195" x2="600" y2="195"/>
-                                            <line x1="0" y1="225" x2="600" y2="225"/>
-                                            <line x1="0" y1="255" x2="600" y2="255"/>
-                                            <line x1="0" y1="285" x2="600" y2="285"/>
-                                            <line x1="0" y1="315" x2="600" y2="315"/>
-                                        </g>
-                                        <rect x="0" y="85" width="600" height="14" fill="#B45309"/>
-                                        <rect x="0" y="152" width="600" height="14" fill="#B45309"/>
-                                        <g fill="#D97706">
-                                            <rect x="50" y="99" width="12" height="53"/><rect x="120" y="99" width="12" height="53"/>
-                                            <rect x="190" y="99" width="12" height="53"/><rect x="260" y="99" width="12" height="53"/>
-                                            <rect x="330" y="99" width="12" height="53"/><rect x="400" y="99" width="12" height="53"/>
-                                            <rect x="470" y="99" width="12" height="53"/><rect x="540" y="99" width="12" height="53"/>
-                                        </g>
-                                    </svg>
-                                    <span class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wider shadow">After</span>
-                                </div>
-
-                                <!-- BEFORE Layer -->
-                                <div class="ba-before-layer">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="150" fill="#94A3B8"/>
-                                        <rect x="0" y="130" width="600" height="35" fill="#15803D"/>
-                                        <rect x="0" y="165" width="600" height="175" fill="#57534E"/>
-                                        <ellipse cx="210" cy="245" rx="120" ry="45" fill="#365314" opacity="0.65"/>
-                                        <ellipse cx="420" cy="285" rx="110" ry="38" fill="#292524" opacity="0.6"/>
-                                        <g stroke="#292524" stroke-width="3">
-                                            <line x1="0" y1="195" x2="600" y2="195"/>
-                                            <line x1="0" y1="225" x2="600" y2="225"/>
-                                            <line x1="0" y1="255" x2="600" y2="255"/>
-                                            <line x1="0" y1="285" x2="600" y2="285"/>
-                                            <line x1="0" y1="315" x2="600" y2="315"/>
-                                        </g>
-                                        <rect x="0" y="85" width="600" height="14" fill="#44403C"/>
-                                        <rect x="0" y="152" width="600" height="14" fill="#44403C"/>
-                                        <g fill="#57534E">
-                                            <rect x="50" y="99" width="12" height="53"/><rect x="120" y="99" width="12" height="53"/>
-                                            <rect x="190" y="99" width="12" height="53"/><rect x="260" y="99" width="12" height="53"/>
-                                            <rect x="330" y="99" width="12" height="53"/><rect x="400" y="99" width="12" height="53"/>
-                                            <rect x="470" y="99" width="12" height="53"/><rect x="540" y="99" width="12" height="53"/>
-                                        </g>
-                                    </svg>
-                                    <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-crimson-600 text-white text-xs font-black uppercase tracking-wider shadow">Before</span>
-                                </div>
-
-                                <div class="ba-handle w-10 h-10 rounded-full bg-gold-500 text-slatebrand-950 shadow-xl border-2 border-white flex items-center justify-center font-black text-xs">
-                                    &harr;
-                                </div>
-                                <input type="range" min="5" max="95" value="50" aria-label="Compare before and after deck restoration" oninput="updateSlider(this)" class="ba-range">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 text-xs font-extrabold uppercase">Fences &amp; Decks</span>
-                                    <span class="text-xs font-bold text-slate-400">Mullica Hill, NJ</span>
-                                </div>
-                                <h3 class="text-xl font-black text-white">Backyard Wood Deck &amp; Railing Brightening</h3>
-                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
-                                    Controlled pressure and wood brightener stripped slippery green mildew and gray UV oxidation, revealing warm natural wood grain.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="px-6 pb-6">
-                            <button type="button" onclick="bookFromGallery('Fences & Decks')" class="w-full py-3 px-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-bold text-sm transition-colors">
-                                Get Free Deck &amp; Fence Quote &rarr;
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Project 5: House Wash + Driveway + FREE Sidewalk Wash Combo -->
-                    <article data-category="driveways" class="gallery-card glass-panel rounded-3xl overflow-hidden shadow-xl border border-white/15 flex flex-col justify-between">
-                        <div>
-                            <div class="ba-container h-64 sm:h-72 bg-slate-900">
-                                <!-- AFTER Layer -->
-                                <div class="w-full h-full relative">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#22C55E"/>
-                                        <path d="M220 0 H380 L430 340 H170 Z" fill="#F8FAFC"/>
-                                        <g stroke="#CBD5E1" stroke-width="3">
-                                            <line x1="210" y1="68" x2="390" y2="68"/>
-                                            <line x1="200" y1="136" x2="400" y2="136"/>
-                                            <line x1="190" y1="204" x2="410" y2="204"/>
-                                            <line x1="180" y1="272" x2="420" y2="272"/>
-                                        </g>
-                                    </svg>
-                                    <span class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wider shadow">After (FREE!)</span>
-                                </div>
-
-                                <!-- BEFORE Layer -->
-                                <div class="ba-before-layer">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#15803D"/>
-                                        <path d="M220 0 H380 L430 340 H170 Z" fill="#44403C"/>
-                                        <ellipse cx="295" cy="110" rx="55" ry="40" fill="#1C1917" opacity="0.7"/>
-                                        <ellipse cx="305" cy="240" rx="68" ry="50" fill="#1C1917" opacity="0.75"/>
-                                        <g stroke="#292524" stroke-width="4">
-                                            <line x1="210" y1="68" x2="390" y2="68"/>
-                                            <line x1="200" y1="136" x2="400" y2="136"/>
-                                            <line x1="190" y1="204" x2="410" y2="204"/>
-                                            <line x1="180" y1="272" x2="420" y2="272"/>
-                                        </g>
-                                    </svg>
-                                    <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-crimson-600 text-white text-xs font-black uppercase tracking-wider shadow">Before</span>
-                                </div>
-
-                                <div class="ba-handle w-10 h-10 rounded-full bg-gold-500 text-slatebrand-950 shadow-xl border-2 border-white flex items-center justify-center font-black text-xs">
-                                    &harr;
-                                </div>
-                                <input type="range" min="5" max="95" value="50" aria-label="Compare before and after free sidewalk wash" oninput="updateSlider(this)" class="ba-range">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-gold-500/20 text-gold-400 text-xs font-black uppercase">FREE Sidewalk Wash Combo</span>
-                                    <span class="text-xs font-bold text-slate-400">Sewell, NJ</span>
-                                </div>
-                                <h3 class="text-xl font-black text-white">Front Sidewalk Wash Transformation (FREE w/ Combo)</h3>
-                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
-                                    Included at $0 extra when booked with a House Wash &amp; Driveway Cleaning—turning slippery dark concrete bright white again.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="px-6 pb-6">
-                            <button type="button" onclick="bookFromGallery('Driveways & Concrete', 'House Wash + Driveway Combo (FREE Sidewalk Wash!)')" class="w-full py-3 px-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-sm transition-colors">
-                                Claim House + Driveway + FREE Sidewalk Wash &rarr;
-                            </button>
-                        </div>
-                    </article>
-
-                    <!-- Project 6: Brick Paver Patio & Pool Deck Cleaning -->
-                    <article data-category="decks" class="gallery-card glass-panel rounded-3xl overflow-hidden shadow-xl border border-white/15 flex flex-col justify-between">
-                        <div>
-                            <div class="ba-container h-64 sm:h-72 bg-slate-900">
-                                <!-- AFTER Layer -->
-                                <div class="w-full h-full relative">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#E11D48"/>
-                                        <rect width="600" height="340" fill="#FB923C" opacity="0.55"/>
-                                        <g stroke="#FED7AA" stroke-width="3">
-                                            <line x1="0" y1="56" x2="600" y2="56"/><line x1="0" y1="112" x2="600" y2="112"/>
-                                            <line x1="0" y1="168" x2="600" y2="168"/><line x1="0" y1="224" x2="600" y2="224"/>
-                                            <line x1="0" y1="280" x2="600" y2="280"/>
-                                            <line x1="100" y1="0" x2="100" y2="340"/><line x1="200" y1="0" x2="200" y2="340"/>
-                                            <line x1="300" y1="0" x2="300" y2="340"/><line x1="400" y1="0" x2="400" y2="340"/>
-                                            <line x1="500" y1="0" x2="500" y2="340"/>
-                                        </g>
-                                    </svg>
-                                    <span class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-royal-600 text-white text-xs font-black uppercase tracking-wider shadow">After</span>
-                                </div>
-
-                                <!-- BEFORE Layer -->
-                                <div class="ba-before-layer">
-                                    <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
-                                        <rect width="600" height="340" fill="#57534E"/>
-                                        <g stroke="#365314" stroke-width="6">
-                                            <line x1="0" y1="56" x2="600" y2="56"/><line x1="0" y1="112" x2="600" y2="112"/>
-                                            <line x1="0" y1="168" x2="600" y2="168"/><line x1="0" y1="224" x2="600" y2="224"/>
-                                            <line x1="0" y1="280" x2="600" y2="280"/>
-                                            <line x1="100" y1="0" x2="100" y2="340"/><line x1="200" y1="0" x2="200" y2="340"/>
-                                            <line x1="300" y1="0" x2="300" y2="340"/><line x1="400" y1="0" x2="400" y2="340"/>
-                                            <line x1="500" y1="0" x2="500" y2="340"/>
-                                        </g>
-                                        <ellipse cx="260" cy="170" rx="130" ry="70" fill="#1C1917" opacity="0.55"/>
-                                    </svg>
-                                    <span class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-crimson-600 text-white text-xs font-black uppercase tracking-wider shadow">Before</span>
-                                </div>
-
-                                <div class="ba-handle w-10 h-10 rounded-full bg-gold-500 text-slatebrand-950 shadow-xl border-2 border-white flex items-center justify-center font-black text-xs">
-                                    &harr;
-                                </div>
-                                <input type="range" min="5" max="95" value="50" aria-label="Compare before and after patio paver wash" oninput="updateSlider(this)" class="ba-range">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="flex items-center justify-between gap-2 mb-2">
-                                    <span class="px-2.5 py-0.5 rounded bg-royal-500/20 text-royal-300 text-xs font-extrabold uppercase">Patios &amp; Pool Decks</span>
-                                    <span class="text-xs font-bold text-slate-400">Woodstown, NJ</span>
-                                </div>
-                                <h3 class="text-xl font-black text-white">Brick Paver Patio Moss &amp; Grime Extraction</h3>
-                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
-                                    Blasted out moss, weeds, and embedded dirt between paver joints to bring back rich brick tones for outdoor entertaining.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="px-6 pb-6">
-                            <button type="button" onclick="bookFromGallery('Patios & Pool Decks')" class="w-full py-3 px-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-bold text-sm transition-colors">
-                                Get Free Patio &amp; Pool Deck Estimate &rarr;
-                            </button>
-                        </div>
-                    </article>
-
-                </div>
-
-                <!-- Bottom Gallery CTA Banner -->
-                <div class="mt-12 glass-panel text-white rounded-3xl p-8 sm:p-10 border-2 border-royal-400/50 flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left shadow-2xl">
-                    <div>
-                        <span class="text-xs font-black uppercase tracking-wider text-gold-400">Ready to Transform Your Property?</span>
-                        <h2 class="text-2xl sm:text-3xl font-black uppercase mt-1">Get Your Free Estimate Today!</h2>
-                        <p class="text-slate-300 text-sm sm:text-base mt-1">Call or text <strong>(856) 283-8381</strong> or build your custom quote in 30 seconds.</p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3 shrink-0 w-full sm:w-auto">
-                        <button type="button" onclick="goToQuote()" class="px-7 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-slatebrand-950 font-black text-sm uppercase tracking-wide">
-                            Build Free Estimate &rarr;
-                        </button>
-                        <a href="tel:8562838381" class="px-6 py-4 rounded-xl bg-crimson-600 hover:bg-crimson-500 text-white font-black text-sm uppercase tracking-wide text-center">
-                            Call (856) 283-8381
+                        <a href="sms:8562838381?body=Hi%20McMullin's%20Pressure%20Washing!%20I'd%20like%20to%20refer%20a%20friend%20for%20the%20%2425%20referral%20reward%3A" class="w-full lg:w-auto px-7 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-sm uppercase text-center shrink-0">
+                            Text a Referral &rarr;
                         </a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 7. Footer with Business Details -->
-        <footer class="bg-slatebrand-950/90 backdrop-blur-md text-slate-300 border-t-4 border-crimson-600">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-                <div class="grid md:grid-cols-3 gap-10 pb-10 border-b border-white/15">
-                    
-                    <!-- Column 1: Business Info & Insured Badge -->
-                    <div class="space-y-4">
-                        <div>
-                            <span class="block text-xl font-black text-white uppercase tracking-tight">McMullin's Pressure Washing LLC</span>
-                            <span class="inline-flex items-center gap-1.5 mt-2 px-3 py-1 rounded-md bg-gold-500/20 border border-gold-500/40 text-gold-400 text-xs font-black uppercase tracking-wider">
-                                ✓ Fully Insured • Residential &amp; Commercial
-                            </span>
+            <!-- 9 Services Grid -->
+            <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="glass rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="text-royal-400 font-extrabold text-xs uppercase tracking-wider">Residential &amp; Commercial</span>
+                        <h2 class="text-3xl sm:text-4xl font-black uppercase mt-1">Our Exterior Cleaning Services</h2>
+                        <p class="text-slate-300 mt-2 text-sm sm:text-base">Tap any service to add it directly to your free estimate form below.</p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🏠 House Washing</h3>
+                                <p class="text-slate-300 text-sm mb-5">Low-pressure soft washing for vinyl, brick, and painted siding. Safely removes green algae, mold, and mildew.</p>
+                            </div>
+                            <button type="button" onclick="pickService('House Washing')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select House Washing &rarr;</button>
                         </div>
-                        <p class="text-sm text-slate-300">
-                            Professional Results. Honest Service. Every Time. Thank you for supporting a local South Jersey business!
-                        </p>
-                    </div>
 
-                    <!-- Column 2: South Jersey Coverage -->
-                    <div>
-                        <h4 class="text-white font-black text-sm uppercase tracking-wider mb-4">South Jersey Coverage</h4>
-                        <ul class="space-y-2 text-sm text-slate-300">
-                            <li class="flex items-center gap-2"><span class="text-crimson-500 font-bold">★</span> Gloucester County</li>
-                            <li class="flex items-center gap-2"><span class="text-crimson-500 font-bold">★</span> Camden County</li>
-                            <li class="flex items-center gap-2"><span class="text-crimson-500 font-bold">★</span> Salem County</li>
-                            <li class="flex items-center gap-2"><span class="text-crimson-500 font-bold">★</span> Cumberland County &amp; Surrounding Areas</li>
-                        </ul>
-                    </div>
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🚗 Driveways &amp; Concrete</h3>
+                                <p class="text-slate-300 text-sm mb-5">Commercial rotary surface cleaning &amp; sealing to eliminate deep-set dirt, tire marks, and black algae.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Driveways & Concrete')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Driveways &rarr;</button>
+                        </div>
 
-                    <!-- Column 3: Direct Contact -->
-                    <div>
-                        <h4 class="text-white font-black text-sm uppercase tracking-wider mb-4">Call or Text Today</h4>
-                        <ul class="space-y-3 text-sm">
-                            <li>
-                                <a href="tel:8562838381" class="inline-flex items-center gap-2.5 text-lg font-black text-gold-400 hover:text-gold-300 transition-colors">
-                                    <svg class="w-5 h-5 text-crimson-500" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
-                                    (856) 283-8381
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:McMullinsPressureWashing@gmail.com" class="inline-flex items-center gap-2.5 text-slate-200 hover:text-royal-400 transition-colors break-all">
-                                    <svg class="w-5 h-5 text-royal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                    McMullinsPressureWashing@gmail.com
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🚶 Sidewalks &amp; Walkways</h3>
+                                <p class="text-slate-300 text-sm mb-5">Restore bright, slip-free concrete walkways and steps. <strong>FREE</strong> when bundling House Wash + Driveway!</p>
+                            </div>
+                            <button type="button" onclick="pickService('Sidewalks & Walkways')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Sidewalks &rarr;</button>
+                        </div>
 
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🏊 Patios &amp; Pool Decks</h3>
+                                <p class="text-slate-300 text-sm mb-5">Deep cleaning for brick pavers, flagstone patios, and concrete pool decks—blasting away moss and weeds.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Patios & Pool Decks')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Patios &amp; Decks &rarr;</button>
+                        </div>
+
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🪵 Fences &amp; Decks</h3>
+                                <p class="text-slate-300 text-sm mb-5">Restore weathered wood, composite decks, and green-stained vinyl fences without damaging surfaces.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Fences & Decks')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Fences &amp; Decks &rarr;</button>
+                        </div>
+
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🏡 Roof Soft Washing</h3>
+                                <p class="text-slate-300 text-sm mb-5">Gentle zero-high-pressure treatment that removes black streaks, algae, and moss to extend roof life.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Roof Soft Washing')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Roof Washing &rarr;</button>
+                        </div>
+
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🍂 Gutter Cleaning</h3>
+                                <p class="text-slate-300 text-sm mb-5">Clear out packed leaves and debris from gutters and downspouts to ensure proper drainage.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Gutter Cleaning')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Gutter Cleaning &rarr;</button>
+                        </div>
+
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🗑️ Trash Bins &amp; Dumpsters</h3>
+                                <p class="text-slate-300 text-sm mb-5">High-temp degreasing and sanitizing for residential cans and commercial dumpster pads.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Trash Bins & Dumpsters')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-royal-600 font-bold text-sm">Select Bins &amp; Dumpsters &rarr;</button>
+                        </div>
+
+                        <div class="glass rounded-2xl p-6 border border-white/15 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-xl font-black mb-2">🏢 Commercial Exterior Cleaning</h3>
+                                <p class="text-slate-300 text-sm mb-5">Storefronts, entryways, drive-thrus, HOA common areas, and commercial buildings.</p>
+                            </div>
+                            <button type="button" onclick="pickService('Commercial Exterior Cleaning')" class="w-full py-3 rounded-xl bg-white/10 hover:bg-crimson-600 font-bold text-sm">Select Commercial &rarr;</button>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-                    <p>&copy; <span id="year"></span> McMullin's Pressure Washing LLC. All rights reserved.</p>
-                    <p>Fully Insured • South Jersey, NJ</p>
+            <!-- Why Choose Us & South Jersey Counties -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="glass rounded-3xl p-6 sm:p-10 border border-white/15 shadow-2xl grid lg:grid-cols-12 gap-8">
+                    <div class="lg:col-span-7 space-y-5">
+                        <span class="text-gold-400 font-extrabold text-xs uppercase tracking-wider">Why Choose Us</span>
+                        <h2 class="text-3xl sm:text-4xl font-black uppercase">Fast, Friendly &amp; Trusted!</h2>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-2xl glass border border-white/15">
+                                <h3 class="font-black text-emerald-400">✓ Fully Insured</h3>
+                                <p class="text-xs sm:text-sm text-slate-300 mt-1">Complete liability protection for total peace of mind.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl glass border border-white/15">
+                                <h3 class="font-black text-royal-400">✓ Professional Equipment</h3>
+                                <p class="text-xs sm:text-sm text-slate-300 mt-1">Commercial-grade soft-wash &amp; rotary surface cleaners.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl glass border border-white/15">
+                                <h3 class="font-black text-royal-400">✓ Eco-Friendly Solutions</h3>
+                                <p class="text-xs sm:text-sm text-slate-300 mt-1">Safe for pets, children, and surrounding landscaping.</p>
+                            </div>
+                            <div class="p-4 rounded-2xl glass border border-white/15">
+                                <h3 class="font-black text-gold-400">★ Satisfaction Guaranteed</h3>
+                                <p class="text-xs sm:text-sm text-slate-300 mt-1">Reliable, on-time service with honest upfront quotes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 glass rounded-3xl p-6 border-2 border-royal-500/40 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-black uppercase text-gold-400">Proudly Serving South Jersey</span>
+                            <h3 class="text-2xl font-black uppercase mt-1 mb-4">Service Coverage</h3>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-gold-400 text-sm mb-1">★ Gloucester County</strong>
+                                    Deptford, Sewell, Woodbury, Washington Twp, Mullica Hill
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-gold-400 text-sm mb-1">★ Camden County</strong>
+                                    Cherry Hill, Voorhees, Sicklerville, Blackwood, Haddonfield
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-gold-400 text-sm mb-1">★ Salem County</strong>
+                                    Woodstown, Pilesgrove, Pennsville, Elmer, Carneys Point
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-gold-400 text-sm mb-1">★ Cumberland County</strong>
+                                    Vineland, Millville, Bridgeton &amp; Surrounding Areas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 pt-4 border-t border-white/10 text-center">
+                            <a href="tel:8562838381" class="text-lg font-black text-gold-400 hover:underline">Call or Text: (856) 283-8381</a>
+                        </div>
+                    </div>
                 </div>
+            </section>
+
+            <!-- Instant Free Estimate Builder -->
+            <section id="estimate" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+                <div class="glass rounded-3xl p-6 sm:p-10 border-2 border-white/20 shadow-2xl">
+                    <div class="text-center mb-8">
+                        <span class="px-4 py-1 rounded-full bg-crimson-600 text-white font-black text-xs uppercase">100% Free • Fast Response</span>
+                        <h2 class="text-3xl sm:text-4xl font-black uppercase mt-3">Build Your Free Estimate</h2>
+                        <p class="text-slate-300 mt-2 text-sm sm:text-base">Select your services and send your pre-filled quote request directly via Text or Email.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-black mb-3">1. Select Services Needed</label>
+                            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="House Washing" class="mr-2.5"> <span class="text-sm font-bold">House Washing</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Driveways & Concrete" class="mr-2.5"> <span class="text-sm font-bold">Driveways &amp; Concrete</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Sidewalks & Walkways" class="mr-2.5"> <span class="text-sm font-bold">Sidewalks &amp; Walkways</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Patios & Pool Decks" class="mr-2.5"> <span class="text-sm font-bold">Patios &amp; Pool Decks</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Fences & Decks" class="mr-2.5"> <span class="text-sm font-bold">Fences &amp; Decks</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Roof Soft Washing" class="mr-2.5"> <span class="text-sm font-bold">Roof Soft Washing</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Gutter Cleaning" class="mr-2.5"> <span class="text-sm font-bold">Gutter Cleaning</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Trash Bins & Dumpsters" class="mr-2.5"> <span class="text-sm font-bold">Trash Bins &amp; Dumpsters</span>
+                                </label>
+                                <label class="flex items-center p-3 rounded-xl border border-white/20 bg-white/5 cursor-pointer">
+                                    <input type="checkbox" name="svc" value="Commercial Exterior Cleaning" class="mr-2.5"> <span class="text-sm font-bold">Commercial Cleaning</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-black mb-1.5">2. Property Type</label>
+                                <select id="qProp" class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm font-bold bg-navy-900 text-white">
+                                    <option value="Residential">Residential Property</option>
+                                    <option value="Commercial">Commercial Property</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-black mb-1.5">3. Driveway Size / Special</label>
+                                <select id="qPkg" class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm font-bold bg-navy-900 text-white">
+                                    <option value="Custom Quote">Not applicable / Custom quote</option>
+                                    <option value="1-Car Driveway ($120)">1-Car Driveway ($120)</option>
+                                    <option value="2-Car Driveway ($165)">2-Car Driveway ($165)</option>
+                                    <option value="3-Car Driveway ($210)">3-Car Driveway ($210)</option>
+                                    <option value="House Wash + Driveway Combo (FREE Sidewalk Wash!)">House Wash + Driveway Combo (FREE Sidewalk Wash!)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-black mb-1.5">4. Your Name</label>
+                                <input type="text" id="qName" placeholder="Your Name" class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm bg-navy-900 text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-black mb-1.5">5. Town / Address</label>
+                                <input type="text" id="qTown" placeholder="e.g., Deptford, Sewell, Cherry Hill..." class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm bg-navy-900 text-white">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-black mb-1.5">Notes / Promo Code</label>
+                            <textarea id="qNotes" rows="2" placeholder="Any extra details or website specials..." class="w-full rounded-xl border border-white/20 px-4 py-3 text-sm bg-navy-900 text-white"></textarea>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <button type="button" onclick="sendSMS()" class="py-4 px-6 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-base shadow-lg">
+                                💬 Send via Text (SMS)
+                            </button>
+                            <button type="button" onclick="sendEmail()" class="py-4 px-6 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-black text-base shadow-lg">
+                                ✉️ Send via Email
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ========================================================= -->
+        <!-- VIEW 2: BEFORE & AFTERS GALLERY PAGE                      -->
+        <!-- ========================================================= -->
+        <section id="view-gallery" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-20">
+            <div class="glass rounded-3xl p-8 sm:p-10 border-2 border-gold-500/70 text-center mb-10 shadow-2xl">
+                <span class="text-xs font-black uppercase tracking-wider text-gold-400">★ See The Difference Immediately</span>
+                <h1 class="text-3xl sm:text-5xl font-black uppercase mt-2">Before &amp; Afters <span class="text-royal-400">Gallery</span></h1>
+                <p class="text-slate-200 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
+                    Slide the yellow handle left and right on each project below to compare the transformation.
+                </p>
             </div>
-        </footer>
 
-    </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Card 1: Driveway -->
+                <div class="glass rounded-3xl overflow-hidden border border-white/15 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="ba-wrap h-64 bg-slate-900">
+                            <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                                <rect width="600" height="120" fill="#BAE6FD"/><rect y="95" width="600" height="25" fill="#4ADE80"/>
+                                <polygon points="100,115 500,115 585,340 15,340" fill="#F1F5F9"/>
+                                <line x1="300" y1="115" x2="300" y2="340" stroke="#94A3B8" stroke-width="3"/>
+                            </svg>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-royal-600 text-xs font-black uppercase">After</span>
+                            <div class="ba-before">
+                                <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                                    <rect width="600" height="120" fill="#94A3B8"/><rect y="95" width="600" height="25" fill="#15803D"/>
+                                    <polygon points="100,115 500,115 585,340 15,340" fill="#44403C"/>
+                                    <ellipse cx="260" cy="225" rx="110" ry="60" fill="#1C1917" opacity="0.7"/>
+                                </svg>
+                                <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-crimson-600 text-xs font-black uppercase">Before</span>
+                            </div>
+                            <div class="ba-knob w-9 h-9 rounded-full bg-gold-500 text-navy-950 font-black text-xs flex items-center justify-center border-2 border-white">&harr;</div>
+                            <input type="range" min="5" max="95" value="50" oninput="slideBA(this)" class="ba-slider">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-extrabold uppercase text-royal-400">Driveways &amp; Concrete • Washington Twp, NJ</span>
+                            <h3 class="text-xl font-black mt-1">2-Car Concrete Driveway Surface Clean</h3>
+                            <p class="text-sm text-slate-300 mt-2">Rotary surface cleaner removed years of black algae and tire grime.</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button type="button" onclick="pickDriveway('2-Car Driveway ($165)')" class="w-full py-3 rounded-xl bg-royal-600 hover:bg-royal-500 font-bold text-sm">Book 2-Car Driveway ($165) &rarr;</button>
+                    </div>
+                </div>
 
-    <!-- Interactive Client-Side Script -->
-    <script>
-        // Set copyright year dynamically
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Multi-View Page Switcher (Home & Pricing vs. Before & Afters Gallery)
-        function switchView(viewName, updateHash = true) {
-            const homeView = document.getElementById('home-view');
-            const galleryView = document.getElementById('gallery-view');
-            const desktopHomeBtn = document.getElementById('nav-home-btn');
-            const desktopGalleryBtn = document.getElementById('nav-gallery-btn');
-            const mobileHomeBtn = document.getElementById('mobile-nav-home');
-            const mobileGalleryBtn = document.getElementById('mobile-nav-gallery');
-
-            if (viewName === 'gallery') {
-                homeView.classList.add('hidden');
-                galleryView.classList.remove('hidden');
-
-                desktopGalleryBtn.classList.remove('text-slate-200', 'hover:bg-white/10');
-                desktopGalleryBtn.classList.add('bg-royal-600', 'text-white');
-                desktopHomeBtn.classList.remove('bg-royal-600', 'text-white');
-                desktopHomeBtn.classList.add('text-slate-200', 'hover:bg-white/10');
-
-                mobileGalleryBtn.classList.remove('bg-white/10', 'text-slate-200');
-                mobileGalleryBtn.classList.add('bg-royal-600', 'text-white');
-                mobileHomeBtn.classList.remove('bg-royal-600', 'text-white');
-                mobileHomeBtn.classList.add('bg-white/10', 'text-slate-200');
-
-                if (updateHash) history.replaceState(null, '', '#gallery');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                galleryView.classList.add('hidden');
-                homeView.classList.remove('hidden');
-
-                desktopHomeBtn.classList.remove('text-slate-200', 'hover:bg-white/10');
-                desktopHomeBtn.classList.add('bg-royal-600', 'text-white');
-                desktopGalleryBtn.classList.remove('bg-royal-600', 'text-white');
-                desktopGalleryBtn.classList.add('text-slate-200', 'hover:bg-white/10');
-
-                mobileHomeBtn.classList.remove('bg-white/10', 'text-slate-200');
-                mobileHomeBtn.classList.add('bg-royal-600', 'text-white');
-                mobileGalleryBtn.classList.remove('bg-royal-600', 'text-white');
-                mobileGalleryBtn.classList.add('bg-white/10', 'text-slate-200');
-
-                if (updateHash) history.replaceState(null, '', '#home');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        // Jump straight to Quote Builder on Home View
-        function goToQuote() {
-            switchView('home', false);
-            setTimeout(() => {
-                document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
-            }, 60);
-        }
-
-        // Book a specific project directly from the Before & After Gallery
-        function bookFromGallery(serviceName, drivewayOption = null) {
-            switchView('home', false);
-            const checkboxes = document.querySelectorAll('input[name="service"]');
-            checkboxes.forEach(cb => {
-                if (cb.value === serviceName) {
-                    cb.checked = true;
-                }
-                if (drivewayOption && drivewayOption.includes('House Wash') && cb.value === 'House Washing') {
-                    cb.checked = true;
-                }
-            });
-            if (drivewayOption) {
-                document.getElementById('drivewaySize').value = drivewayOption;
-            }
-            setTimeout(() => {
-                document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
-            }, 60);
-        }
-
-        // Update Interactive Before/After Comparison Slider
-        function updateSlider(rangeInput) {
-            const container = rangeInput.closest('.ba-container');
-            const beforeLayer = container.querySelector('.ba-before-layer');
-            const handle = container.querySelector('.ba-handle');
-            const val = rangeInput.value + '%';
-            beforeLayer.style.width = val;
-            handle.style.left = val;
-        }
-
-        // Filter Gallery Cards by Category
-        function filterGallery(category, clickedBtn) {
-            const cards = document.querySelectorAll('.gallery-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-
-            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-gold-500', 'text-slatebrand-950', 'font-black', 'shadow');
-                btn.classList.add('bg-white/10', 'text-white', 'font-bold');
-            });
-            clickedBtn.classList.remove('bg-white/10', 'text-white', 'font-bold');
-            clickedBtn.classList.add('bg-gold-500', 'text-slatebrand-950', 'font-black', 'shadow');
-        }
-
-        // Handle direct #gallery URL hash on load
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.location.hash === '#gallery') {
-                switchView('gallery', false);
-            }
-        });
-
-        // Pre-select a service card and scroll smoothly to the Free Estimate builder
-        function selectServiceAndScroll(serviceName) {
-            const checkboxes = document.querySelectorAll('input[name="service"]');
-            checkboxes.forEach(cb => {
-                if (cb.value === serviceName) {
-                    cb.checked = true;
-                }
-            });
-            document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Pre-select Driveways & Concrete + specific driveway pricing tier
-        function selectDrivewayTier(tierValue) {
-            const checkboxes = document.querySelectorAll('input[name="service"]');
-            checkboxes.forEach(cb => {
-                if (cb.value === 'Driveways & Concrete') {
-                    cb.checked = true;
-                }
-            });
-            const drivewaySelect = document.getElementById('drivewaySize');
-            drivewaySelect.value = tierValue;
-            document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Pre-select House Wash + Driveway + FREE Sidewalk Wash Bundle
-        function selectBundleSpecial() {
-            const checkboxes = document.querySelectorAll('input[name="service"]');
-            checkboxes.forEach(cb => {
-                if (cb.value === 'House Washing' || cb.value === 'Driveways & Concrete') {
-                    cb.checked = true;
-                }
-            });
-            const drivewaySelect = document.getElementById('drivewaySize');
-            drivewaySelect.value = 'House Wash + Driveway Combo (FREE Sidewalk Wash!)';
-            document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Pre-select House Washing with 10% OFF Website Special note
-        function selectHouseWashDiscount() {
-            const checkboxes = document.querySelectorAll('input[name="service"]');
-            checkboxes.forEach(cb => {
-                if (cb.value === 'House Washing') {
-                    cb.checked = true;
-                }
-            });
-            const notesField = document.getElementById('customerNotes');
-            if (!notesField.value.includes('10% OFF')) {
-                notesField.value = notesField.value
-                    ? `${notesField.value} | Claiming 10% OFF House Washing over $200 website offer`
-                    : 'Claiming 10% OFF House Washing over $200 website offer';
-            }
-            document.getElementById('estimate').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Format the quote message from user selections
-        function buildQuoteMessage() {
-            const selectedServices = Array.from(document.querySelectorAll('input[name="service"]:checked'))
-                .map(cb => cb.value);
-            
-            const servicesText = selectedServices.length > 0 
-                ? selectedServices.join(', ') 
-                : 'General Exterior Cleaning / Free Estimate';
-
-            const propertyType = document.getElementById('propertyType').value;
-            const drivewaySize = document.getElementById('drivewaySize').value;
-            const name = document.getElementById('customerName').value.trim() || 'Not provided';
-            const address = document.getElementById('customerAddress').value.trim() || 'South Jersey';
-            const notes = document.getElementById('customerNotes').value.trim();
-
-            let message = `Hi McMullin's Pressure Washing! I'd like a free estimate:\n\n`;
-            message += `• Services: ${servicesText}\n`;
-            message += `• Property Type: ${propertyType}\n`;
-            if (drivewaySize !== 'Not applicable / Quote needed') {
-                message += `• Driveway / Package: ${drivewaySize}\n`;
-            }
-            message += `• Name: ${name}\n`;
-            message += `• Address / Town: ${address}\n`;
-            if (notes) {
-                message += `• Notes: ${notes}\n`;
-            }
-            return {
-                servicesText,
-                fullMessage: message
-            };
-        }
-
-        // Display feedback banner
-        function showStatus(text) {
-            const banner = document.getElementById('statusBanner');
-            banner.textContent = text;
-            banner.classList.remove('hidden');
-            setTimeout(() => {
-                banner.classList.add('hidden');
-            }, 6500);
-        }
-
-        // Launch SMS app pre-filled to (856) 283-8381
-        function sendViaSMS() {
-            const { fullMessage } = buildQuoteMessage();
-            const encodedBody = encodeURIComponent(fullMessage);
-            window.location.href = `sms:8562838381?&body=${encodedBody}`;
-            showStatus('Opening your messaging app to text (856) 283-8381...');
-        }
-
-        // Launch Email client pre-filled to McMullinsPressureWashing@gmail.com
-        function sendViaEmail() {
-            const { servicesText, fullMessage } = buildQuoteMessage();
-            const subject = encodeURIComponent(`Free Estimate Request - ${servicesText}`);
-            const body = encodeURIComponent(fullMessage);
-            window.location.href = `mailto:McMullinsPressureWashing@gmail.com?subject=${subject}&body=${body}`;
-            showStatus('Opening your email app addressed to McMullinsPressureWashing@gmail.com...');
-        }
-
-        // Copy quote details to clipboard (iFrame safe)
-        function copyQuoteDetails() {
-            const { fullMessage } = buildQuoteMessage();
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = fullMessage;
-            tempTextArea.style.position = 'fixed';
-            tempTextArea.style.left = '-9999px';
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            
-            try {
-                document.execCommand('copy');
-                const btnText = document.getElementById('copyBtnText');
-                btnText.textContent = 'Copied!';
-                showStatus('Quote details copied to clipboard! Paste into a text, email, or Facebook message.');
-                setTimeout(() => {
-                    btnText.textContent = 'Copy Quote Request';
-                }, 3000);
-            } catch (err) {
-                showStatus('Please call or text (856) 283-8381 directly for a fast quote!');
-            }
-            document.body.removeChild(tempTextArea);
-        }
-
-        // FAQ Accordion Toggle
-        function toggleFaq(button) {
-            const item = button.closest('.faq-item');
-            const isActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        }
-    </script>
-</body>
-</html>
+                <!-- Card 2: House Wash -->
+                <div class="glass rounded-3xl overflow-hidden border border-white/15 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="ba-wrap h-64 bg-slate-900">
+                            <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                                <rect width="600" height="340" fill="#E0F2FE"/>
+                                <rect x="50" y="30" width="500" height="270" fill="#F8FAFC"/>
+                                <rect x="145" y="90" width="90" height="120" fill="#38BDF8" stroke="#1E3A8A" stroke-width="6"/>
+                                <rect x="365" y="90" width="90" height="120" fill="#38BDF8" stroke="#1E3A8A" stroke-width="6"/>
+                            </svg>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 rounded bg-royal-600 text-xs font-black uppercase">After</span>
+                            <div class="ba-before">
+                                <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                                    <rect width="600" height="340" fill="#94A3B8"/>
+                                    <rect x="50" y="30" width="500" height="270" fill="#65A30D"/>
+                                    <rect x="145" y="90" width="90" height="120" fill="#475569" stroke="#1E293B" stroke-width="6"/>
+                                    <rect x="365" y="90" width="90" height="120" fill="#475569" stroke="#1E293B" stroke-width="6"/>
+                                </svg>
+                                <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-crimson-600 text-xs font-black uppercase">Before</span>
+                            </div>
+                            <div class="ba-knob w-9 h-9 rounded-full bg-gold-500 text-navy-950 font-black text-xs flex items-center justify-center border-2 border-white">&harr;</div>
+                            <input type="range" min="5" max="95" value="50" oninput="slideBA(this)" class="ba-slider">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-extrabold uppercase text-royal-
