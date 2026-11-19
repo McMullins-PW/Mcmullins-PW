@@ -192,7 +192,7 @@
                         <a href="#estimate" class="px-6 py-4 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-black text-sm uppercase tracking-wide text-center shadow-lg">
                             Get Free Estimate &rarr;
                         </a>
-                        <button type="button" onclick="showTab('gallery')" class="px-5 py-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-extrabold text-sm border border-white/20 text-center">
+                        <button type="button" onclick="event.preventDefault(); document.getElementById('view-home').style.display='none'; document.getElementById('view-gallery').style.display='block'; window.scrollTo(0,0);" class="px-5 py-4 rounded-xl bg-royal-600 hover:bg-royal-500 text-white font-extrabold text-sm border border-white/20 text-center">
                             Before &amp; Afters
                         </button>
                     </div>
